@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	lang="#{localeBean.language}"
+	>
+
+<f:view locale="#{localeBean.locale}">
+	
+	 
+	
+	<h:head>
+		<title>
+		   <ui:insert name="title">
+				<h:outputLabel value="#{msg['pages.templateMenu.titleMainMenu']}" />
+			</ui:insert>
+	    </title>
+	    
+	 
+	</h:head>
+
+	<h:body>
+
+		<p:layout id="globalLayout" fullPage="true">
+			
+
+			<p:layoutUnit position="north" size="160" >
+				<ui:include src="comuns/cabecalho.xhtml" />
+			</p:layoutUnit>
+
+			<p:layoutUnit position="south">
+				<ui:include src="comuns/rodape.xhtml" />
+			</p:layoutUnit>
+
+			<p:layoutUnit position="center">
+				<ui:insert name="principal" />
+			</p:layoutUnit>
+		</p:layout>
+		
+<p:tabMenu activeIndex="#{param.i}" rendered = "true">
+    <p:menuitem value="Inicio" url="inicio.xhtml?i=0" icon="ui-icon-home">
+        <f:param name="i" value="0" />
+    </p:menuitem>
+    <p:menuitem value="Cadastros" url="cadastros.xhtml?i=1" icon="ui-icon-pencil">
+        <f:param name="i" value="1" />
+    </p:menuitem>
+    <p:menuitem value="Configurações" url="linguagem.xhtml?i=2" icon="ui-icon-gear">
+        <f:param name="i" value="2" />
+     </p:menuitem>
+     <p:menuitem value="Sobre" url="sobre.xhtml?i=3" icon="ui-icon-info">
+   	<f:param name="i" value="3" />
+    </p:menuitem>
+</p:tabMenu>
+	</h:body>
+</f:view>
+</h:html>
+
+
+
+
+
+
+
