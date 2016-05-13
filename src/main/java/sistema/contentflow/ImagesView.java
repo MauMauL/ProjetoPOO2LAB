@@ -10,7 +10,7 @@ public class ImagesView {
      
     private List<String> images;
   //  private String[] nome = {"Conteudo", "Disciplima", "Pergunta", "Professor", "Prova"};
-    private String[] nome = {"Cadastro de Pergunta", "Cadastro de Professor"};
+    private String[] nome = {"interrogacao", "professor"};
     
     @PostConstruct
     public void init() {
