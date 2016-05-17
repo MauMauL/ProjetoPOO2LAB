@@ -4,15 +4,19 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
 	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
 	
 	<ui:define name="title">
-		<h:outputText value="Início" />
+		<h:outputText value="#{msg['pages.tela2.title']}" />
 	</ui:define>
+	
 
 	<ui:define name="principal">
-	     <p:outputLabel value="#{msg['pages.inicio.welcome']}"/>      	
+	 	 
+	   	<p:outputLabel value="#{msg['pages.tela2.hello']}"/>
+	   
 	</ui:define>
-
-	
 </ui:composition>
+
+

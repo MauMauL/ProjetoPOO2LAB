@@ -23,7 +23,9 @@
 			<p:outputLabel value="#{msg['pages.cadastroFornecedor.nome']}" />
 			<p:inputText  value="#{fornecedorManagedBean.fornecedor.nome}"/>
 		</p:panelGrid>
-		<p:commandButton value="#{msg['pages.comuns.form.btnSalvar']}" update=":formFornecedores, :formTableFornecedores"  action="#{fornecedorManagedBean.salvar}"/>
+		<p:commandButton value="#{msg['pages.comuns.form.btnSalvar']}" 
+		update=":formFornecedores, :formTableFornecedores"  
+		action="#{fornecedorManagedBean.salvar}"/>
 	</h:form>
 
     

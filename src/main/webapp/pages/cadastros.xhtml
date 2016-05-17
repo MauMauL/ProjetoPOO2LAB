@@ -10,10 +10,47 @@
 	<ui:define name="title">
 		<h:outputText value="Lista de Cadastros Disponiveis" />
 	</ui:define>
- 
-	   <p:contentFlow value="#{imagesView.images}" var="image">
-    <p:graphicImage name="imagens/#{image}" library="sistema" styleClass="content" />
-    <div class="caption">#{image}</div>
-</p:contentFlow>
+	
+	
+<ui:define name="principal">
 
+<br/>
+
+<!-- Cadastro Professor -->
+<p:link value="Cadastro Professor" href="cadastroProfessor.xhtml?i=1">
+</p:link>
+
+<br/>
+<br/>
+
+<!-- Cadastro Disciplina -->
+<p:link value="Cadastro Disciplina" href="cadastroDisciplina.xhtml?i=1">
+</p:link>
+
+<br/>
+<br/>
+
+<!-- Cadastro Prova -->
+<p:link value="Cadastro Prova" href="cadastroProva.xhtml?i=1">
+</p:link>
+
+<br/>
+<br/>
+
+<!-- Cadastro Conteudo -->
+<p:link value="Cadastro Conteudo" href="cadastroConteudo.xhtml?i=1">
+</p:link>
+
+<br/>
+<br/>
+
+<!-- Cadastro Pergunta -->
+<p:link value="Cadastro Pergunta" href="cadastroPergunta.xhtml?i=1">
+</p:link>
+    
+
+
+
+    
+</ui:define>
 </ui:composition>

@@ -5,16 +5,13 @@ package sistema.beans;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 
 import org.primefaces.event.RowEditEvent;
-import org.primefaces.event.SelectEvent;
 import sistema.beans.datamodel.FornecedorDataModel;
-import sistema.modelos.Aluno;
 import sistema.modelos.Fornecedor;
 import sistema.modelos.Produto;
 import sistema.service.FornecedorService;

@@ -9,9 +9,8 @@
 
 <f:view locale="#{localeBean.locale}">
 	
-	 
-	
 	<h:head>
+	
 		<title>
 		   <ui:insert name="title">
 				<h:outputLabel value="#{msg['pages.templateMenu.titleMainMenu']}" />
@@ -26,7 +25,7 @@
 		<p:layout id="globalLayout" fullPage="true">
 			
 
-			<p:layoutUnit position="north" size="160" >
+			<p:layoutUnit position="north" size="50" >
 				<ui:include src="comuns/cabecalho.xhtml" />
 			</p:layoutUnit>
 
@@ -40,19 +39,23 @@
 		</p:layout>
 		
 <p:tabMenu activeIndex="#{param.i}" rendered = "true">
-    <p:menuitem value="Inicio" url="inicio.xhtml?i=0" icon="ui-icon-home">
+    <p:menuitem value="Inicio" url="inicio.xhtml?i=0" icon="fa fa-home" >
         <f:param name="i" value="0" />
     </p:menuitem>
-    <p:menuitem value="Cadastros" url="cadastros.xhtml?i=1" icon="ui-icon-pencil">
+    <p:menuitem value="Cadastros" url="cadastros.xhtml?i=1" icon="fa fa-pencil-square-o">
         <f:param name="i" value="1" />
     </p:menuitem>
-    <p:menuitem value="Configurações" url="linguagem.xhtml?i=2" icon="ui-icon-gear">
+    <p:menuitem value="Idioma" url="linguagem.xhtml?i=2" icon="fa fa-language">
         <f:param name="i" value="2" />
      </p:menuitem>
-     <p:menuitem value="Sobre" url="sobre.xhtml?i=3" icon="ui-icon-info">
+     <p:menuitem value="Configurações" url="configuracao.xhtml?i=2" icon="fa fa-gear">
+        <f:param name="i" value="2" />
+     </p:menuitem>
+     <p:menuitem value="Sobre" url="sobre.xhtml?i=3" icon="fa fa-info">
    	<f:param name="i" value="3" />
     </p:menuitem>
 </p:tabMenu>
+
 	</h:body>
 </f:view>
 </h:html>
