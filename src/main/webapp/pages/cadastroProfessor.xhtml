@@ -16,30 +16,53 @@
 	<h:form id="formProfessor">
 	    
 	    <p:panel  header="Cadastro de Professores" style="margin-bottom:10px;">
-	    <h:panelGrid columns="2">
+	    <h:panelGrid columns="3" >
+	     
 	     <p:outputLabel value="Nome:"/>
-	     <p:inputText value = "#{professorManagedBean.professor.nomeProf}" 
+	     <p:inputText id="nome" value = "#{professorManagedBean.professor.nomeProf}" 
 	    required="true" />
+         <p:message for="nome"/>
+         
 	     <p:outputLabel value="Curso que Ministra:"/>
-		<p:inputText value = "#{professorManagedBean.professor.cursoMinistra}" 
-	    required="true" />
+		<p:inputText id="cursoMinistra" value = "#{professorManagedBean.professor.cursoMinistra}" 
+	    required="true"/>
+	    <p:message for="cursoMinistra"/>
+	     
 	      </h:panelGrid>
 	      </p:panel>
-	          <p:commandButton value="Salvar" 
+	     
+	      <p:commandButton value="Salvar" 
 	      action="#{professorManagedBean.salvar}"
-	      	icon="fa fa-save" update=":formProfessor 
-	      	:formTableProfessor:tableProfessor"
-	      	styleClass="ui-priority-primary"
+	      	icon="fa fa-save" update=":formProfessor, 
+	      	:formTableProfessor:tableProfessor,
+	      	:formTableDisciplina:tableDisciplina"
+	      	styleClass="ui-priority-primary" validateClient="true"
 	      	/>
 	   </h:form>
 	   
 	   <br/>
-	   
 
 	   <h:form id="formTableProfessor">
+	   
+	   <h3><h:outputLabel value="Professores Cadastrados"/></h3>
+	   
+	   <br/>
+
+    <p:growl id="growl" showDetail="true" />
+	   
 	   <p:dataTable value="#{professorManagedBean.professores}" var="p"
-	   id="tableProfessor" editable="true">
-	 
+	   id="tableProfessor" editable="true" selectionMode="single"
+	   selection="#{professorManagedBean.professorSelecionado}"  
+	   rowKey="#{p.codigoProf}">
+	  
+	  <p:ajax event="rowSelect"   update=":formTableDisciplina" />
+           
+      <p:ajax event="rowUnselect" update=":formTableDisciplina" />
+          
+      <p:ajax event="rowEdit"     
+           listener="#{professorManagedBean.onRowEdit}"     
+           update=":formTableDisciplina:tableDisciplina" />
+           
 	    <p:column headerText="Codigo" > <!--filterBy="#{p.codigoProf}"-->
         <p:outputLabel value="#{p.codigoProf}" />
       </p:column>
@@ -71,7 +94,7 @@
          
        <p:column style="width:70px" 
        headerText="Opções">
-       
+       <p:rowEditor/>
        	<p:commandLink id="remover" styleClass="fa fa-trash"
 						style="text-align:center"
 						actionListener="#{professorManagedBean.remover(p)}"
@@ -79,6 +102,25 @@
        </p:column>
 	   </p:dataTable>
 	     </h:form>
+	<br/>     
+	     <h:form id="formTableDisciplina">
+	     
+	  <h3><p:outputLabel value="Disciplinas do Professor: 
+	    #{professorManagedBean.professorSelecionado.nomeProf}" /></h3>
+	    <br/>
+		<p:dataTable value="#{professorManagedBean.disciplinasProfessor}" 
+		var="disc"	id="tableDisciplina">
+
+			<p:column headerText="Codigo">
+				<h:outputText value="#{disc.codigoDisc}" />
+			</p:column>
+
+			<p:column headerText="Nome">
+						<p:outputLabel value="#{disc.nomeDisc}" />
+			</p:column>
+
+		</p:dataTable>
+	</h:form>
 	</ui:define>
 </ui:composition>
 

@@ -17,17 +17,40 @@
 <h:form id="formDisciplina">
 	    
 	    <p:panel  header="Cadastro de Disciplinas" style="margin-bottom:10px;">
-	    <h:panelGrid columns="2">
+	    <h:panelGrid columns="3">
+	     
 	     <p:outputLabel value="Nome:"/>
-	     <p:inputText value = "#{disciplinaManagedBean.disciplina.nomeDisc}" 
+	     <p:inputText id="nome" value = "#{disciplinaManagedBean.disciplina.nomeDisc}" 
 	    required="true" />
+	    <p:message for="nome"/>
+	
+	    <p:outputLabel value="Professor: "  />
+        <p:selectOneMenu value="#{disciplinaManagedBean.professor}" 
+        converter="converterProfessor" panelStyle="width:180px"
+      effect="fade" var="sm" style="width:191px" filter="true"
+       filterMatchMode="startsWith">
+       
+       <f:selectItem itemValue="" itemLabel="Selecione um Professor" />
+       
+       <f:selectItems value="#{disciplinaManagedBean.professores}" var="prof" 
+        itemValue="#{prof}" itemLabel="#{prof.nomeProf}"/>
+ 
+            <p:column style="width:5%">
+                <h:outputText styleClass="fa fa-mortar-board" />
+            </p:column>
+ 
+            <p:column>
+                <h:outputText value="#{sm.nomeProf}" />
+            </p:column>
+        </p:selectOneMenu>
+        
 	      </h:panelGrid>
 	      </p:panel>
 	          <p:commandButton value="Salvar" 
 	      action="#{disciplinaManagedBean.salvar}"
 	      	icon="fa fa-save" update=":formDisciplina 
 	      	:formTableDisciplina:tableDisciplina"
-	      	styleClass="ui-priority-primary"
+	      	styleClass="ui-priority-primary" validateClient="true"
 	      	/>
 	   </h:form>
 	   
@@ -64,7 +87,7 @@
        </p:column>
 	   </p:dataTable>
 	     </h:form>
-	   
+
 	</ui:define>
 </ui:composition>
 

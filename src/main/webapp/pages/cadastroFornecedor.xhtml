@@ -36,12 +36,15 @@
 	
 		<p:dataTable value="#{fornecedorManagedBean.fornecedores}" var="f"
 			editable="true" id="tableProdutos"
-			selectionMode="single" selection="#{fornecedorManagedBean.fornecedorSelecionado}"  rowKey="#{f.codigo}"
+			selectionMode="single" 
+			selection="#{fornecedorManagedBean.fornecedorSelecionado}"  
+			rowKey="#{f.codigo}"
 			>
 
 		   <p:ajax event="rowSelect"   update=":formTableProdutos" />
            <p:ajax event="rowUnselect" update=":formTableProdutos" />
-           <p:ajax event="rowEdit"     listener="#{fornecedorManagedBean.onRowEdit}"     update=":formTableProdutos" /> 
+           <p:ajax event="rowEdit"     listener="#{fornecedorManagedBean.onRowEdit}"    
+            update=":formTableProdutos" /> 
 
 			<p:column headerText="#{msg['pages.cadastroFornecedor.codigo']}">
 				<h:outputText value="#{f.codigo}" />

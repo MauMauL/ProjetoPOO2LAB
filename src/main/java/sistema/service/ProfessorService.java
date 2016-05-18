@@ -49,7 +49,7 @@ public class ProfessorService
 		return professor;
 	}
 
-	public List<Disciplina> pesquisarProdutosprofessor(Professor professor) {
+	public List<Disciplina> pesquisarDisciplinasProfessor(Professor professor) {
 
 		List<Disciplina> disciplinas;
 
