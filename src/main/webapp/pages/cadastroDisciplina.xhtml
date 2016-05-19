@@ -15,7 +15,7 @@
 	<ui:define name="principal">
 	 	 
 <h:form id="formDisciplina">
-	    
+
 	    <p:panel  header="Cadastro de Disciplinas" style="margin-bottom:10px;">
 	    <h:panelGrid columns="3">
 	     
@@ -48,8 +48,9 @@
 	      </p:panel>
 	          <p:commandButton value="Salvar" 
 	      action="#{disciplinaManagedBean.salvar}"
-	      	icon="fa fa-save" update=":formDisciplina 
-	      	:formTableDisciplina:tableDisciplina"
+	      	icon="fa fa-save" update=":formDisciplina, 
+	      	:formTableDisciplina:tableDisciplina, 
+	      	:formTableConteudo:tableConteudo"
 	      	styleClass="ui-priority-primary" validateClient="true"
 	      	/>
 	   </h:form>
@@ -58,9 +59,23 @@
 	   
 
 	   <h:form id="formTableDisciplina">
+	    <h3><h:outputLabel value="Disciplinas Cadastradas"/></h3>
+	   
+	   <br/>
+	     <p:growl id="growl" showDetail="true" />
 	   <p:dataTable value="#{disciplinaManagedBean.disciplinas}" var="d"
-	   id="tableDisciplina" editable="true">
+	   id="tableDisciplina" editable="true" selectionMode="single"
+	    selection="#{disciplinaManagedBean.disciplinaSelecionada}"  
+	   rowKey="#{d.codigoDisc}">
 	 
+	 <p:ajax event="rowSelect"   update=":formTableConteudo" />
+           
+      <p:ajax event="rowUnselect" update=":formTableConteudo" />
+          
+      <p:ajax event="rowEdit"     
+           listener="#{disciplinaManagedBean.onRowEdit}"     
+           update=":formTableConteudo:tableConteudo" />
+           
 	    <p:column headerText="Codigo" > <!--filterBy="#{d.codigoDisc}"-->
         <p:outputLabel value="#{d.codigoDisc}" />
       </p:column>
@@ -79,7 +94,7 @@
          
        <p:column style="width:70px" 
        headerText="Opções">
-       
+       <p:rowEditor/>
        	<p:commandLink id="remover" styleClass="fa fa-trash"
 						style="text-align:center"
 						actionListener="#{disciplinaManagedBean.remover(d)}"
@@ -88,6 +103,26 @@
 	   </p:dataTable>
 	     </h:form>
 
+<br/>	     
+
+   <h:form id="formTableConteudo">
+	     
+	  <h3><p:outputLabel value="Conteudos de uma Disciplina: 
+	    #{disciplinaManagedBean.disciplinaSelecionada.nomeDisc}" /></h3>
+	    <br/>
+		<p:dataTable value="#{disciplinaManagedBean.conteudosDisciplina}" 
+		var="cont"	id="tableConteudo">
+
+			<p:column headerText="Codigo">
+				<h:outputText value="#{cont.codigoCont}" />
+			</p:column>
+
+			<p:column headerText="Nome">
+						<p:outputLabel value="#{cont.nomeCont}" />
+			</p:column>
+
+		</p:dataTable>
+	</h:form>
 	</ui:define>
 </ui:composition>
 

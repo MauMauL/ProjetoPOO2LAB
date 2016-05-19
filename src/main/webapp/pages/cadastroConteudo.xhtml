@@ -8,13 +8,86 @@
 	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
 	
 	<ui:define name="title">
-		<h:outputText value="#{msg['pages.tela2.title']}" />
+		<h:outputText value="Cadastro de Conteúdos" />
 	</ui:define>
 	
 
 	<ui:define name="principal">
 	 	 
-	   	<p:outputLabel value="#{msg['pages.tela2.hello']}"/>
+	   <h:form id="formConteudo">
+	    
+	    <p:panel  header="Cadastro de Conteudos" style="margin-bottom:10px;">
+	    <h:panelGrid columns="3">
+	     
+	     <p:outputLabel value="Nome:"/>
+	     <p:inputText id="nome" value = "#{conteudoManagedBean.conteudo.nomeCont}" 
+	    required="true" />
+	    <p:message for="nome"/>
+	
+	    <p:outputLabel value="Disciplina: "  />
+        <p:selectOneMenu value="#{conteudoManagedBean.disciplina}" 
+        converter="converterDisciplina" panelStyle="width:180px"
+      effect="fade" var="sm" style="width:191px" filter="true"
+       filterMatchMode="startsWith">
+       
+       <f:selectItem itemValue="" itemLabel="Selecione uma Disciplina" />
+       
+       <f:selectItems value="#{conteudoManagedBean.disciplinas}" var="disc" 
+        itemValue="#{disc}" itemLabel="#{disc.nomeDisc}"/>
+ 
+            <p:column style="width:5%">
+                <h:outputText styleClass="fa fa-book" />
+            </p:column>
+ 
+            <p:column>
+                <h:outputText value="#{sm.nomeDisc}" />
+            </p:column>
+        </p:selectOneMenu>
+        
+	      </h:panelGrid>
+	      </p:panel>
+	          <p:commandButton value="Salvar" 
+	      action="#{conteudoManagedBean.salvar}"
+	      	icon="fa fa-save" update=":formConteudo 
+	      	:formTableConteudo:tableConteudo"
+	      	styleClass="ui-priority-primary" validateClient="true"
+	      	/>
+	   </h:form>
+	   
+	   <br/>
+	   
+
+	   <h:form id="formTableConteudo">
+	   <p:dataTable value="#{conteudoManagedBean.conteudos}" var="c"
+	   id="tableConteudo" editable="true">
+	 
+	    <p:column headerText="Codigo" > <!--filterBy="#{d.codigoDisc}"-->
+        <p:outputLabel value="#{c.codigoCont}" />
+      </p:column>
+      
+        <p:column headerText="Nome">
+				<p:cellEditor>
+					<f:facet name="output">
+					<p:outputLabel value="#{c.nomeCont}"/>
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="nome" value="#{c.nomeCont}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+         
+       <p:column style="width:70px" 
+       headerText="Opções">
+       
+       	<p:commandLink id="remover" styleClass="fa fa-trash"
+						style="text-align:center"
+						actionListener="#{conteudoManagedBean.remover(c)}"
+						update="tableConteudo" />
+       </p:column>
+	   </p:dataTable>
+	     </h:form>
+	   
 	   
 	</ui:define>
 </ui:composition>

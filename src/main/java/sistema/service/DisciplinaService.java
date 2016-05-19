@@ -2,15 +2,17 @@ package sistema.service;
 
 import java.util.List;
 import sistema.generic.DisciplinaDAO;
+import sistema.modelos.Conteudo;
 import sistema.modelos.Disciplina;
 
 
 public class DisciplinaService 
 {
 
-	DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
+	private DisciplinaDAO disciplinaDAO = new DisciplinaDAO();
 
-	public Disciplina salvar(Disciplina disciplina) {
+	public Disciplina salvar(Disciplina disciplina) 
+	{
 		disciplina = disciplinaDAO.save(disciplina);
 		disciplinaDAO.closeEntityManager();
 		return disciplina;
@@ -34,5 +36,24 @@ public class DisciplinaService
 		disciplinaDAO.remove(disciplina);
 		disciplinaDAO.closeEntityManager();
 	}
+	public List<Conteudo> pesquisarConteudosDisciplina(Disciplina disciplina) {
 
+		List<Conteudo> conteudos;
+
+		disciplina = disciplinaDAO.getById(Disciplina.class, disciplina.
+				getCodigoDisc());
+		conteudos = disciplina.getConteudos();
+
+		return conteudos;
+	}
+	public Disciplina pesquisar(Disciplina disciplina) 
+	{
+
+		disciplina = disciplinaDAO.getById(Disciplina.class, disciplina.getCodigoDisc());
+		disciplinaDAO.closeEntityManager();
+		return disciplina;
+	}
 }
+
+
+

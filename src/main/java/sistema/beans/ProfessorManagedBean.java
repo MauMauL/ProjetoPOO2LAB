@@ -2,8 +2,10 @@ package sistema.beans;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 
 import org.primefaces.event.RowEditEvent;
@@ -62,8 +64,16 @@ public class ProfessorManagedBean
 			return null;
 	}
 	public void remover(Professor professor) {
+		if (service.pesquisarDisciplinasProfessor(professor).size() > 0) {
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Não é possível remover professor",
+					"Professor possui disciplinas!"));
+		}
+		else
+		{
 		service.remover(professor);
 		professores.remove(professor);
+		}
 	}
 	public void onRowEdit(RowEditEvent event) {
 

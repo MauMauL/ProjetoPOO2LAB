@@ -8,13 +8,142 @@
 	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
 	
 	<ui:define name="title">
-		<h:outputText value="#{msg['pages.tela2.title']}" />
+		<h:outputText value="Cadastro de Provas" />
 	</ui:define>
 	
 
 	<ui:define name="principal">
 	 	 
-	   	<p:outputLabel value="#{msg['pages.tela2.hello']}"/>
+<h:form id="formProva">
+
+	    <p:panel  header="Cadastro de Provas" style="margin-bottom:10px;">
+	    <h:panelGrid columns="3">
+	     
+	     <p:outputLabel value="Nome:"/>
+	     <p:inputText id="nome" value = "#{provaManagedBean.prova.nomeProva}" 
+	    required="true" />
+	    <p:message for="nome"/>
+	     
+	     <p:outputLabel value="Turma:"/>
+	     <p:inputText id="turma" value = "#{provaManagedBean.prova.turma}" 
+	    required="true" />
+	    <p:message for="turma"/>
+	    
+	       <p:outputLabel value="Curso:"/>
+	     <p:inputText id="curso" value = "#{provaManagedBean.prova.curso}" 
+	    required="true" />
+	    <p:message for="curso"/>
+	
+	   <p:outputLabel value="Data de Aplicação"/>
+	     <p:inputText id="dataAplicacao" value = 
+	     "#{provaManagedBean.prova.dataAplicacao}" 
+	    required="true" />
+	    <p:message for="dataAplicacao"/>
+	    
+	    <p:outputLabel value="Disciplina: "  />
+        <p:selectOneMenu value="#{provaManagedBean.disciplina}" 
+        converter="converterDisciplina" panelStyle="width:180px"
+      effect="fade" var="sm" style="width:191px" filter="true"
+       filterMatchMode="startsWith">
+       
+       <f:selectItem itemValue="" itemLabel="Selecione uma Disciplina" />
+       
+       <f:selectItems value="#{provaManagedBean.disciplinas}" var="disc" 
+        itemValue="#{disc}" itemLabel="#{disc.nomeDisc}"/>
+ 
+            <p:column style="width:5%">
+                <h:outputText styleClass="fa fa-book" />
+            </p:column>
+ 
+            <p:column>
+                <h:outputText value="#{sm.nomeDisc}" />
+            </p:column>
+        </p:selectOneMenu>
+        
+	      </h:panelGrid>
+	      </p:panel>
+	          <p:commandButton value="Salvar" 
+	      action="#{provaManagedBean.salvar}"
+	      	icon="fa fa-save" update=":formProva, 
+	      	:formTableProva:tableProva"
+	      	styleClass="ui-priority-primary" validateClient="true"
+	      	/>
+	   </h:form>
+	   
+	   <h:form id="formTableProva">
+	    <h3><h:outputLabel value="Provas Cadastradas"/></h3>
+	   
+	   <br/>
+	     <p:growl id="growl" showDetail="true" />
+	     
+	   <p:dataTable value="#{provaManagedBean.provas}" var="p"
+	   id="tableProva" editable="true" >
+	      
+	    <p:column headerText="Codigo" > <!--filterBy="#{d.codigoDisc}"-->
+        <p:outputLabel value="#{p.codProva}" />
+      </p:column>
+      
+       <p:column headerText="Nome">
+				<p:cellEditor>
+					<f:facet name="output">
+					<p:outputLabel value="#{p.nomeProva}"/>
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="nome" value="#{p.nomeProva}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+      
+        <p:column headerText="Turma">
+				<p:cellEditor>
+					<f:facet name="output">
+					<p:outputLabel value="#{p.turma}"/>
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="turma" value="#{p.turma}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			
+			     <p:column headerText="Curso">
+				<p:cellEditor>
+					<f:facet name="output">
+					<p:outputLabel value="#{p.curso}"/>
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="curso" value="#{p.curso}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+            
+            <p:column headerText="Data de Aplicação">
+				<p:cellEditor>
+					<f:facet name="output">
+					<p:outputLabel value="#{p.dataAplicacao}"/>
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="dataAplicacao" value="#{p.dataAplicacao}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			
+       <p:column style="width:70px" 
+       headerText="Opções">
+       <p:rowEditor/>
+       	<p:commandLink id="remover" styleClass="fa fa-trash"
+						style="text-align:center"
+						actionListener="#{provaManagedBean.remover(p)}"
+						update="tableProva" />
+       </p:column>
+	   </p:dataTable>
+	     </h:form>
+
+<br/>	     
+	   
 	   
 	</ui:define>
 </ui:composition>

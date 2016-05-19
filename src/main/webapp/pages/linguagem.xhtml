@@ -15,14 +15,26 @@
 
 	<ui:define name="principal">
 	 	 
-	   	 <h:form >
+	 	 <br/>
+	 	 <p:panel header="Idiomas Disponíveis" style="margin-bottom:10px;">
+	 	 <h:panelGrid columns="2">
+	 	 
+	 	 <h:form >
+	 	 
             <p:outputLabel value="#{msg['pages.linguagem.lingua']} "/>
             
-            <p:selectOneMenu value="#{localeBean.language}" onchange="submit()">
+            <p:selectOneMenu value="#{localeBean.language}" 
+            onchange="submit()" panelStyle="width:180px"
+            style="width:191px">
                 <f:selectItem itemValue="en" itemLabel="English"/>
                 <f:selectItem itemValue="pt" itemLabel="Português"/>
             </p:selectOneMenu>
+            
         </h:form>
+	 	 
+	 	 </h:panelGrid>
+	 	 </p:panel>
+	   	 
 	   
 	</ui:define>
 </ui:composition>

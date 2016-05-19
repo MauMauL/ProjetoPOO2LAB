@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -19,10 +20,13 @@ public class Disciplina implements Serializable
 	private long codigoDisc;
 	
 	private String nomeDisc;
+	
+	@OneToMany
 	private List<Conteudo> conteudos = new ArrayList<Conteudo>();
 	
 	@ManyToOne
 	private Professor professor;
+	
 	private List<Prova> provas = new ArrayList<Prova>();
 	
 	public long getCodigoDisc() {
@@ -54,6 +58,14 @@ public class Disciplina implements Serializable
 	}
 	public void setProvas(ArrayList<Prova> provas) {
 		this.provas = provas;
+	}
+	public void addConteudo(Conteudo conteudo)
+	{
+		conteudos.add(conteudo);
+	}
+	public void addProva(Prova prova)
+	{
+		provas.add(prova);
 	}
 	
 	@Override
