@@ -1,18 +1,33 @@
 package sistema.modelos;
 
+import java.io.Serializable;
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
-abstract class Pergunta {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+public abstract class Pergunta implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int codPer;
+	
 	private String dificuldade;
 	private int tempoEstimado;
-	private Calendar dataCriacao;
+	private Date dataCriacao;
 	private String enunciado;
+	
+	private List<Prova> provas = new ArrayList<Prova>();
 	private List<Conteudo> conteudos = new ArrayList<Conteudo>();
-	private List<Calendar> datasDeUso = new ArrayList<Calendar>();
 	private String imagem;
 	
 	public int getCodPer() {
@@ -33,10 +48,10 @@ abstract class Pergunta {
 	public void setTempoEstimado(int tempoEstimado) {
 		this.tempoEstimado = tempoEstimado;
 	}
-	public Calendar getDataCriacao() {
+	public Date getDataCriacao() {
 		return dataCriacao;
 	}
-	public void setDataCriacao(Calendar dataCriacao) {
+	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
 	public String getEnunciado() {
@@ -51,17 +66,17 @@ abstract class Pergunta {
 	public void setConteudos(List<Conteudo> conteudos) {
 		this.conteudos = conteudos;
 	}
-	public List<Calendar> getDatasDeUso() {
-		return datasDeUso;
-	}
-	public void setDatasDeUso(List<Calendar> datasDeUso) {
-		this.datasDeUso = datasDeUso;
-	}
 	public String getImagem() {
 		return imagem;
 	}
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
 	}
-	
+	public List<Prova> getProvas() {
+		return provas;
+	}
+	public void setProvas(List<Prova> provas) {
+		this.provas = provas;
+	}
+		
 }

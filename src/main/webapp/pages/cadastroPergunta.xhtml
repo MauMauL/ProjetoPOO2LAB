@@ -8,13 +8,124 @@
 	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
 	
 	<ui:define name="title">
-		<h:outputText value="#{msg['pages.tela2.title']}" />
+		<h:outputText value="Cadastro de Perguntas" />
 	</ui:define>
 	
 
 	<ui:define name="principal">
 	 	 
-	   	<p:outputLabel value="#{msg['pages.tela2.hello']}"/>
+	 <h:form id="formPergunta">
+	    
+	    <p:panel  header="Cadastro de Perguntas" style="margin-bottom:10px;">
+	    <h:panelGrid columns="3">
+	     
+	     <p:outputLabel value="Enunciado:"/>
+	     <p:inputText id="enunciado" 
+	     value = "#{perguntaManagedBean.pergunta.enunciado}" 
+	    required="true" />
+	    <p:message for="enunciado"/>
+	
+	 <p:outputLabel value="Dificuldade:"/>
+	     <p:inputText id="dificiuldade" 
+	     value = "#{perguntaManagedBean.pergunta.dificuldade}" 
+	    required="true" />
+	    <p:message for="dificuldade"/>
+	    
+	     <p:outputLabel value="Tempo Estimado:"/>
+	     <p:inputText id="tempoE" 
+	     value = "#{perguntaManagedBean.pergunta.tempoEstimado}" 
+	    required="true" />
+	    <p:message for="tempoE"/>
+	    
+		 <p:outputLabel for="dataCriacao" value="Data de Criação:" />
+        <p:calendar id="dataCriacao"
+         value="#{perguntaManagedBean.pergunta.dataCricao}" />
+        <p:message for="dataCriacao"/>
+        
+         <p:outputLabel value="Dificuldade:"/>
+	     <p:inputText id="dificiuldade" 
+	     value = "#{perguntaManagedBean.pergunta.dificuldade}" 
+	    required="true" />
+	    <p:message for="dificuldade"/>
+        
+	      </h:panelGrid>
+	      </p:panel>
+	          <p:commandButton value="Salvar" 
+	      action="#{perguntaManagedBean.salvar}"
+	      	icon="fa fa-save" update=":formPergunta 
+	      	:formTablePergunta:tablePergunta"
+	      	styleClass="ui-priority-primary" validateClient="true"
+	      	/>
+	   </h:form>
+	   
+	   <br/>
+	   
+	   <h:form id="formTablePergunta">
+	   <p:dataTable value="#{perguntaManagedBean.perguntas}" var="p"
+	   id="tableConteudo" editable="true">
+	 
+	    <p:column headerText="Codigo" > <!--filterBy="#{d.codigoDisc}"-->
+        <p:outputLabel value="#{p.codPer}" />
+      </p:column>
+      
+        <p:column headerText="Enunciado">
+				<p:cellEditor>
+					<f:facet name="output">
+					<p:outputLabel value="#{p.enunciado}"/>
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="codPer" value="#{p.enunciado}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			
+			<p:column headerText="Dificuldade">
+				<p:cellEditor>
+					<f:facet name="output">
+					<p:outputLabel value="#{p.dificuldade}"/>
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="dificuldade" value="#{p.dificuldade}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+         
+         <p:column headerText="Tempo Estimado">
+				<p:cellEditor>
+					<f:facet name="output">
+					<p:outputLabel value="#{p.tempoEstimado}"/>
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="tempoEstimado" value="#{p.tempoEstimado}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			
+			 <p:column headerText="Data de Criação">
+				<p:cellEditor>
+					<f:facet name="output">
+					<p:outputLabel value="#{p.dataCriacao}"/>
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="dataCriacao" value="#{p.dataCriacao}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+         
+       <p:column style="width:70px" 
+       headerText="Opções">
+       
+       	<p:commandLink id="remover" styleClass="fa fa-trash"
+						style="text-align:center"
+						actionListener="#{perguntaManagedBean.remove(p)}"
+						update="tablePergunta" />
+       </p:column>
+	   </p:dataTable>
+	     </h:form>
 	   
 	</ui:define>
 </ui:composition>

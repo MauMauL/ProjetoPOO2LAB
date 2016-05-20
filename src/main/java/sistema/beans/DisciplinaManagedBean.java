@@ -35,18 +35,13 @@ public class DisciplinaManagedBean
 		
 		disciplina = discService.salvar(disciplina);
 		
-		if(disciplinas == null)
+		if(disciplinas != null)
 		{
 			disciplinas.add(disciplina);
 		}
 		disciplina = new Disciplina();
 		professor = null;
-		
 
-		if (disciplinas != null)
-			disciplinas.add(disciplina);
-
-		disciplina = new Disciplina();
 	}
 
 	public Disciplina getDisciplinaSelecionada() {
@@ -56,7 +51,7 @@ public class DisciplinaManagedBean
 	public void setDisciplinaSelecionada(Disciplina disciplinaSelecionada) {
 		this.disciplinaSelecionada = disciplinaSelecionada;
 	}
-	public DataModel<Disciplina> getDisciplinasD() {
+	public DataModel<Disciplina> getDisciplinasDataModel() {
 		if (disciplinas == null)
 			disciplinas = discService.getDisciplinas();
 
@@ -92,6 +87,10 @@ public class DisciplinaManagedBean
 	public List<Professor> getProfessores() {
 		return profService.getProfessores();
 
+	}
+	public void remove(Disciplina disciplina) {
+		discService.remover(disciplina);
+		disciplinas.remove(disciplina);
 	}
 	public void remover(Disciplina disciplina) 
 	{

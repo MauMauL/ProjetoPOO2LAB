@@ -1,8 +1,6 @@
 package sistema.beans.datamodel;
 
 import java.util.List;
-
-import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 
 import org.primefaces.model.SelectableDataModel;

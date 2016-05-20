@@ -1,6 +1,8 @@
 package sistema.modelos;
 
+import javax.persistence.Entity;
 
+@Entity
 public class Dissertativa extends Pergunta 
 {
 	private String resposta;

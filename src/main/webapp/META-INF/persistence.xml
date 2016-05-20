@@ -4,14 +4,15 @@
 		<class>sistema.modelos.Aluno</class>
 		<class>sistema.modelos.Fornecedor</class>
 		<class>sistema.modelos.Produto</class>
-		<class>sistema.modelos.Alternativa</class>
 		<class>sistema.modelos.Conteudo</class>
-		<class>sistema.modelos.Dissertativa</class>
 		<class>sistema.modelos.Disciplina</class>
-		<class>sistema.modelos.MultiplaEscolha</class>
 		<class>sistema.modelos.Professor</class>
-		<class>sistema.modelos.VerdadeiroFalso</class>
 		<class>sistema.modelos.Prova</class>
+		<class>sistema.modelos.Pergunta</class>
+		<class>sistema.modelos.Alternativa</class>
+		<class>sistema.modelos.Dissertativa</class>
+		<class>sistema.modelos.MultiplaEscolha</class>
+		<class>sistema.modelos.VerdadeiroFalso</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/DBTeste;create=true"/>
 			<property name="javax.persistence.jdbc.user" value="app"/>

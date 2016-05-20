@@ -21,12 +21,13 @@ public class Disciplina implements Serializable
 	
 	private String nomeDisc;
 	
-	@OneToMany
+	@OneToMany(mappedBy="disciplina")
 	private List<Conteudo> conteudos = new ArrayList<Conteudo>();
 	
 	@ManyToOne
 	private Professor professor;
 	
+	@OneToMany(mappedBy="disciplina")
 	private List<Prova> provas = new ArrayList<Prova>();
 	
 	public long getCodigoDisc() {

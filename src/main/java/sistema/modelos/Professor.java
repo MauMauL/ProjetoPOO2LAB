@@ -21,7 +21,7 @@ public class Professor implements Serializable
 	private String nomeProf; 
 	private String cursoMinistra;
 
-	@OneToMany
+	@OneToMany(mappedBy="professor")
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 	
 	public Professor()

@@ -19,10 +19,9 @@ import sistema.service.ProfessorService;
 @ViewScoped
 public class ProfessorManagedBean 
 {
-	
-	private Professor professor = new Professor();
-	private List<Professor> professores;
 	private ProfessorService service = new ProfessorService();
+	private List<Professor> professores;
+	private Professor professor = new Professor();
 	private Professor professorSelecionado;
 	
 	

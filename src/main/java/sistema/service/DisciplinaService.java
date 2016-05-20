@@ -1,5 +1,8 @@
 package sistema.service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.List;
 import sistema.generic.DisciplinaDAO;
 import sistema.modelos.Conteudo;
@@ -32,11 +35,13 @@ public class DisciplinaService
 
 	public void remover(Disciplina disciplina) {
 
-		disciplina = disciplinaDAO.getById(Disciplina.class, disciplina.getCodigoDisc());
+		disciplina = disciplinaDAO.getById(Disciplina.class,
+				disciplina.getCodigoDisc());
 		disciplinaDAO.remove(disciplina);
 		disciplinaDAO.closeEntityManager();
 	}
-	public List<Conteudo> pesquisarConteudosDisciplina(Disciplina disciplina) {
+	public List<Conteudo> pesquisarConteudosDisciplina(Disciplina disciplina) 
+	{
 
 		List<Conteudo> conteudos;
 
