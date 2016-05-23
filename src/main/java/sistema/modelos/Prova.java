@@ -77,9 +77,21 @@ public class Prova implements Serializable
 	public void setPerguntas(List<Pergunta> perguntas) {
 		this.perguntas = perguntas;
 	}
-	public void addPergunta(Pergunta pergunta)
+	public void addAlternativa(Alternativa alternativa)
 	{
-		perguntas.add(pergunta);
+		perguntas.add(alternativa);
+	}
+	public void addDissertativa(Dissertativa dissertativa)
+	{
+		perguntas.add(dissertativa);
+	}
+	public void addMultiplaEscolha(MultiplaEscolha multiplaEscolha)
+	{
+		perguntas.add(multiplaEscolha);
+	}
+	public void addVerdadeiroFalso(VerdadeiroFalso verdadeiroFalso)
+	{
+		perguntas.add(verdadeiroFalso);
 	}
 	@Override
 	public int hashCode() {

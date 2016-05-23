@@ -30,29 +30,34 @@ public class PerguntaManagedBean
 	private MultiplaEscolha multiplaEscolha = new MultiplaEscolha();
 	private VerdadeiroFalso verdadeiroFalso = new VerdadeiroFalso();
 	private List<Pergunta> perguntas;
-	private Prova prova;
 	private PerguntaService perguntaService = new PerguntaService();
-	
+
 	public void salvarAlternativa() 
 	{
-		prova.addPergunta(alternativa);
-		alternativa.addProva(prova);
+		int nPergunta = 0;
+		
+		nPergunta = perguntas.size();
+		nPergunta += 1;
+		alternativa.setNumeroPerguntas(nPergunta);
 		
 		perguntaService.salvarAlternativa(alternativa);
-		
+	
 		if(perguntas != null)
 		{
 			perguntas.add(alternativa);
 		}
-		
+	
 		alternativa = new Alternativa();
-		prova = null;
 
 	}
 	public void salvarDissertativa() 
 	{
-		prova.addPergunta(dissertativa);
-		dissertativa.addProva(prova);
+		int nPergunta;
+		
+		nPergunta = perguntas.size();
+		nPergunta += 1;
+		
+		dissertativa.setNumeroPerguntas(nPergunta);
 		
 		perguntaService.salvarDissertativa(dissertativa);
 		
@@ -62,13 +67,16 @@ public class PerguntaManagedBean
 		}
 		
 		dissertativa = new Dissertativa();
-		prova = null;
 
 	}
 	public void salvarMultiplaEscolha() 
 	{
-		prova.addPergunta(multiplaEscolha);
-		multiplaEscolha.addProva(prova);
+		int nPergunta;
+	
+		nPergunta = perguntas.size();
+		nPergunta += 1;
+		
+		multiplaEscolha.setNumeroPerguntas(nPergunta);
 		
 		perguntaService.salvarMultiplaEscolha(multiplaEscolha);
 		
@@ -78,12 +86,15 @@ public class PerguntaManagedBean
 		}
 		
 		multiplaEscolha = new MultiplaEscolha();
-		prova = null;
 	}
 	public void salvarVerdadeiroFalso() 
 	{
-		prova.addPergunta(verdadeiroFalso);
-		verdadeiroFalso.addProva(prova);
+		int nPergunta;
+		
+		nPergunta = perguntas.size();
+		nPergunta += 1;
+		
+		verdadeiroFalso.setNumeroPerguntas(nPergunta);
 		
 		perguntaService.salvarVerdadeiroFalso(verdadeiroFalso);
 		
@@ -93,7 +104,6 @@ public class PerguntaManagedBean
 		}
 		
 		verdadeiroFalso = new VerdadeiroFalso();
-		prova = null;
 	}
 
 	public Alternativa getAlternativa() {
@@ -130,13 +140,6 @@ public class PerguntaManagedBean
 	public void setPerguntas(List<Pergunta> perguntas) {
 		this.perguntas = perguntas;
 	}
-	public Prova getProva() {
-		return prova;
-	}
-	public void setProva(Prova prova) {
-		this.prova = prova;
-	}
-	
 	public void removeAlternativa(Alternativa alternativa) {
 		perguntaService.remover(alternativa);
 		perguntas.remove(alternativa);
@@ -152,6 +155,10 @@ public class PerguntaManagedBean
 	public void removeVerdadeiroFalso(VerdadeiroFalso verdadeiroFalso) {
 		perguntaService.remover(verdadeiroFalso);
 		perguntas.remove(verdadeiroFalso);
+	}
+	public void removePergunta(Pergunta pergunta) {
+		perguntaService.remover(pergunta);
+		perguntas.remove(pergunta);
 	}
 	
 }

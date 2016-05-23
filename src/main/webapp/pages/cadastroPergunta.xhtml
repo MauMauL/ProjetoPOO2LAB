@@ -14,45 +14,45 @@
 
 	<ui:define name="principal">
 	 	 
-	 <h:form id="formPergunta">
+	 	 
+<h3> <p:outputLabel value="Cadastro de Perguntas" /></h3>
+<br/>
+<br/>
+
+	 <h:form id="formPerguntaAlternativa">
 	    
-	    <p:panel  header="Cadastro de Perguntas" style="margin-bottom:10px;">
+	    <p:panel  header="Cadastro de Alternativas" 
+	    style="margin-bottom:10px;">
 	    <h:panelGrid columns="3">
 	     
 	     <p:outputLabel value="Enunciado:"/>
-	     <p:inputText id="enunciado" 
-	     value = "#{perguntaManagedBean.pergunta.enunciado}" 
+	     <p:inputText id="enunciadoA" 
+	     value = "#{perguntaManagedBean.alternativa.enunciado}" 
 	    required="true" />
-	    <p:message for="enunciado"/>
+	    <p:message for="enunciadoA"/>
 	
 	 <p:outputLabel value="Dificuldade:"/>
-	     <p:inputText id="dificiuldade" 
-	     value = "#{perguntaManagedBean.pergunta.dificuldade}" 
+	     <p:inputText id="dificuldadeA" 
+	     value = "#{perguntaManagedBean.alternativa.dificuldade}" 
 	    required="true" />
-	    <p:message for="dificuldade"/>
+	    <p:message for="dificuldadeA"/>
 	    
 	     <p:outputLabel value="Tempo Estimado:"/>
-	     <p:inputText id="tempoE" 
-	     value = "#{perguntaManagedBean.pergunta.tempoEstimado}" 
+	     <p:inputText id="tempoEa" 
+	     value = "#{perguntaManagedBean.alternativa.tempoEstimado}" 
 	    required="true" />
-	    <p:message for="tempoE"/>
+	    <p:message for="tempoEa"/>
 	    
-		 <p:outputLabel for="dataCriacao" value="Data de Criação:" />
-        <p:calendar id="dataCriacao"
-         value="#{perguntaManagedBean.pergunta.dataCricao}" />
-        <p:message for="dataCriacao"/>
-        
-         <p:outputLabel value="Dificuldade:"/>
-	     <p:inputText id="dificiuldade" 
-	     value = "#{perguntaManagedBean.pergunta.dificuldade}" 
-	    required="true" />
-	    <p:message for="dificuldade"/>
-        
+		 <p:outputLabel value="Data de Criação:" />
+        <p:calendar id="dataCriacaoA" 
+         value="#{perguntaManagedBean.alternativa.dataCriacao}" />
+        <p:message for="dataCriacaoA"/>
+ 
 	      </h:panelGrid>
 	      </p:panel>
 	          <p:commandButton value="Salvar" 
-	      action="#{perguntaManagedBean.salvar}"
-	      	icon="fa fa-save" update=":formPergunta 
+	      action="#{perguntaManagedBean.salvarAlternativa}"
+	      	icon="fa fa-save" update=":formPerguntaAlternativa 
 	      	:formTablePergunta:tablePergunta"
 	      	styleClass="ui-priority-primary" validateClient="true"
 	      	/>
@@ -60,9 +60,135 @@
 	   
 	   <br/>
 	   
+	    <h:form id="formDissertativa">
+	    
+	    <p:panel  header="Cadastro de Dissertativas" 
+	    style="margin-bottom:10px;">
+	    <h:panelGrid columns="3">
+	     
+	     <p:outputLabel value="Enunciado:"/>
+	     <p:inputText id="enunciadoD" 
+	     value = "#{perguntaManagedBean.dissertativa.enunciado}" 
+	    required="true" />
+	    <p:message for="enunciadoD"/>
+	
+	 <p:outputLabel value="Dificuldade:"/>
+	     <p:inputText id="dificuldadeD" 
+	     value = "#{perguntaManagedBean.dissertativa.dificuldade}" 
+	    required="true" />
+	    <p:message for="dificuldadeD"/>
+	    
+	     <p:outputLabel value="Tempo Estimado:"/>
+	     <p:inputText id="tempoEd" 
+	     value = "#{perguntaManagedBean.dissertativa.tempoEstimado}" 
+	    required="true" />
+	    <p:message for="tempoEd"/>
+	    
+		 <p:outputLabel value="Data de Criação:" />
+        <p:calendar id="dataCriacaoD"
+         value="#{perguntaManagedBean.dissertativa.dataCriacao}" />
+        <p:message for="dataCriacaoD"/>
+        
+	      </h:panelGrid>
+	      </p:panel>
+	          <p:commandButton value="Salvar" 
+	      action="#{perguntaManagedBean.salvarDissertativa}"
+	      	icon="fa fa-save" update=":formDissertativa 
+	      	:formTablePergunta:tablePergunta"
+	      	styleClass="ui-priority-primary" validateClient="true"
+	      	/>
+	   </h:form>
+	   
+	   <br/>
+	   <br/>
+	   
+	    <h:form id="formMultiplaEscolha">
+	    
+	    <p:panel  header="Cadastro de Multipla Escolha" 
+	    style="margin-bottom:10px;">
+	    <h:panelGrid columns="3">
+	     
+	     <p:outputLabel value="Enunciado:"/>
+	     <p:inputText id="enunciadoM" 
+	     value = "#{perguntaManagedBean.multiplaEscolha.enunciado}" 
+	    required="true" />
+	    <p:message for="enunciadoM"/>
+	
+	 <p:outputLabel value="Dificuldade:"/>
+	     <p:inputText id="dificuldadeM" 
+	     value = "#{perguntaManagedBean.multiplaEscolha.dificuldade}" 
+	    required="true" />
+	    <p:message for="dificuldadeM"/>
+	    
+	     <p:outputLabel value="Tempo Estimado:"/>
+	     <p:inputText id="tempoEm" 
+	     value = "#{perguntaManagedBean.multiplaEscolha.tempoEstimado}" 
+	    required="true" />
+	    <p:message for="tempoEm"/>
+	    
+		 <p:outputLabel value="Data de Criação:" />
+        <p:calendar id="dataCriacaoM"
+         value="#{perguntaManagedBean.multiplaEscolha.dataCriacao}" />
+        <p:message for="dataCriacaoM"/>
+        
+	      </h:panelGrid>
+	      </p:panel>
+	          <p:commandButton value="Salvar" 
+	      action="#{perguntaManagedBean.salvarMultiplaEscolha}"
+	      	icon="fa fa-save" update=":formMultiplaEscolha 
+	      	:formTablePergunta:tablePergunta"
+	      	styleClass="ui-priority-primary" validateClient="true"
+	      	/>
+	   </h:form>
+	   
+	   <br/>
+	   <br/>
+	   
+	    <h:form id="formVerdadeiroFalso">
+	    
+	    <p:panel  header="Cadastro de Verdadeiro ou Falso" 
+	    style="margin-bottom:10px;">
+	    <h:panelGrid columns="3">
+	     
+	     <p:outputLabel value="Enunciado:"/>
+	     <p:inputText id="enunciadoV" 
+	     value = "#{perguntaManagedBean.verdadeiroFalso.enunciado}" 
+	    required="true" />
+	    <p:message for="enunciadoV"/>
+	
+	 <p:outputLabel value="Dificuldade:"/>
+	     <p:inputText id="dificuldadeV" 
+	     value = "#{perguntaManagedBean.verdadeiroFalso.dificuldade}" 
+	    required="true" />
+	    <p:message for="dificuldadeV"/>
+	    
+	     <p:outputLabel value="Tempo Estimado:"/>
+	     <p:inputText id="tempoV" 
+	     value = "#{perguntaManagedBean.verdadeiroFalso.tempoEstimado}" 
+	    required="true" />
+	    <p:message for="tempoV"/>
+	    
+		 <p:outputLabel value="Data de Criação:" />
+        <p:calendar id="dataCriacaoV"
+         value="#{perguntaManagedBean.verdadeiroFalso.dataCriacao}" />
+        <p:message for="dataCriacaoV"/>
+        
+	      </h:panelGrid>
+	      </p:panel>
+	          <p:commandButton value="Salvar" 
+	      action="#{perguntaManagedBean.salvarVerdadeiroFalso}"
+	      	icon="fa fa-save" update=":formVerdadeiroFalso 
+	      	:formTablePergunta:tablePergunta"
+	      	styleClass="ui-priority-primary" validateClient="true"
+	      	/>
+	   </h:form>
+	   
+	   <br/>
+	   <br/>
+	   
 	   <h:form id="formTablePergunta">
 	   <p:dataTable value="#{perguntaManagedBean.perguntas}" var="p"
-	   id="tableConteudo" editable="true">
+	   id="tablePergunta" editable="true">
 	 
 	    <p:column headerText="Codigo" > <!--filterBy="#{d.codigoDisc}"-->
         <p:outputLabel value="#{p.codPer}" />
@@ -115,13 +241,17 @@
 					</f:facet>
 				</p:cellEditor>
 			</p:column>
+			
+			<p:column headerText="Numero de Perguntas Cadastradas" > <!--filterBy="#{d.codigoDisc}"-->
+        <p:outputLabel value="#{p.numeroPerguntas}" />
+      </p:column>
          
        <p:column style="width:70px" 
        headerText="Opções">
        
        	<p:commandLink id="remover" styleClass="fa fa-trash"
 						style="text-align:center"
-						actionListener="#{perguntaManagedBean.remove(p)}"
+						actionListener="#{perguntaManagedBean.removePergunta(p)}"
 						update="tablePergunta" />
        </p:column>
 	   </p:dataTable>

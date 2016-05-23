@@ -1,8 +1,10 @@
 package sistema.modelos;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -13,6 +15,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.JoinColumn;
 
 @Entity
@@ -26,7 +30,10 @@ public abstract class Pergunta implements Serializable{
 	
 	private String dificuldade;
 	private int tempoEstimado;
+	
+	@Temporal(value = TemporalType.DATE)
 	private Date dataCriacao;
+	
 	private String enunciado;
 	private int numeroPerguntas;
 	
@@ -60,12 +67,42 @@ public abstract class Pergunta implements Serializable{
 	public void setTempoEstimado(int tempoEstimado) {
 		this.tempoEstimado = tempoEstimado;
 	}
+	
 	public Date getDataCriacao() {
 		return dataCriacao;
 	}
 	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
+	/*public String getDataCriacao() {
+		
+		String dataCriacao = "";
+		
+		try {	 
+			SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yy");
+			dataCriacao = formatoData.format(this.dataCriacao.getTime());
+			 
+			return dataCriacao;
+			 
+			} catch (Exception e) 
+			{
+				System.out.println("Erro ao converter de Calendar para String");
+			}
+		return "";
+	}
+	public void setDataCriacao(String dataCriacao) {
+		
+		SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yy");
+		
+		this.dataCriacao = Calendar.getInstance();
+		
+		try{
+		this.dataCriacao.setTime(formatoData.parse(dataCriacao));
+		}catch(Exception e)
+		{
+			System.out.println("Erro ao converter de String para Calendar");
+		}
+	}*/
 	public String getEnunciado() {
 		return enunciado;
 	}
@@ -73,10 +110,10 @@ public abstract class Pergunta implements Serializable{
 		this.enunciado = enunciado;
 	}
 	
-	public int getNumeroProvas() {
+	public int getNumeroPerguntas() {
 		return numeroPerguntas;
 	}
-	public void setNumeroProvas(int numeroPerguntas) {
+	public void setNumeroPerguntas(int numeroPerguntas) {
 		this.numeroPerguntas = numeroPerguntas;
 	}
 	public List<Conteudo> getConteudos() {
