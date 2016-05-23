@@ -2,7 +2,6 @@ package sistema.modelos;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.Entity;
 
 
@@ -10,8 +9,6 @@ import javax.persistence.Entity;
 public class Alternativa extends Pergunta  
 {
 	private List<Item> itens = new ArrayList<Item>(); 
-	
-	
 	
 	public List<Item> getItens() 
 	{

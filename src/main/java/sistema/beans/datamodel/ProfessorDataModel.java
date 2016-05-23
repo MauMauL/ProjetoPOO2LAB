@@ -28,7 +28,7 @@ private ProfessorService servico = new ProfessorService();
 		
 		for(Professor p: servico.getProfessores())
 		   if(Integer.parseInt(rowKey) ==  p.getCodigoProf())
-			   return p;
+			   return servico.pesquisar(p);
 		
 		return null;
 	}

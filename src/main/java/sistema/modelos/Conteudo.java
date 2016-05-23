@@ -8,18 +8,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Conteudo implements Serializable
 {
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long codigoCont;
+	
 	private String nomeCont;
+	
 	@ManyToOne
 	private Disciplina disciplina;
+	
+	@ManyToMany
 	private List<Pergunta> perguntas = new ArrayList<Pergunta>();
 	
 	public long getCodigoCont() {

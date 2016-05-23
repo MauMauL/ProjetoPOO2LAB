@@ -50,7 +50,8 @@
 	      action="#{disciplinaManagedBean.salvar}"
 	      	icon="fa fa-save" update=":formDisciplina, 
 	      	:formTableDisciplina:tableDisciplina, 
-	      	:formTableConteudo:tableConteudo"
+	      	:formTableConteudo:tableConteudo, 
+	      	:formTableProva:tableProva"
 	      	styleClass="ui-priority-primary" validateClient="true"
 	      	/>
 	   </h:form>
@@ -68,13 +69,13 @@
 	    selection="#{disciplinaManagedBean.disciplinaSelecionada}"  
 	   rowKey="#{d.codigoDisc}">
 	 
-	 <p:ajax event="rowSelect"   update=":formTableConteudo" />
+	 <p:ajax event="rowSelect"   update=":formTableConteudo, :formTableProva" />
            
-      <p:ajax event="rowUnselect" update=":formTableConteudo" />
+      <p:ajax event="rowUnselect" update=":formTableConteudo, :formTableProva" />
           
       <p:ajax event="rowEdit"     
            listener="#{disciplinaManagedBean.onRowEdit}"     
-           update=":formTableConteudo:tableConteudo" />
+           update=":formTableConteudo:tableConteudo, :formTableProva:tableProva" />
            
 	    <p:column headerText="Codigo" > <!--filterBy="#{d.codigoDisc}"-->
         <p:outputLabel value="#{d.codigoDisc}" />
@@ -121,6 +122,36 @@
 						<p:outputLabel value="#{cont.nomeCont}" />
 			</p:column>
 
+		</p:dataTable>
+		</h:form>
+		<h:form id="formTableProva">
+	     
+	  <h3><p:outputLabel value="Provas de uma Disciplina: 
+	    #{disciplinaManagedBean.disciplinaSelecionada.nomeDisc}" /></h3>
+	    <br/>
+		<p:dataTable value="#{disciplinaManagedBean.provasDisciplina}" 
+		var="p"	id="tableProva">
+
+			<p:column headerText="Codigo">
+				<h:outputText value="#{p.codProva}" />
+			</p:column>
+
+			<p:column headerText="Nome">
+						<p:outputLabel value="#{p.nomeProva}" />
+			</p:column>
+			
+			<p:column headerText="Turma">
+						<p:outputLabel value="#{p.turma}" />
+			</p:column>
+			
+			<p:column headerText="Curso">
+						<p:outputLabel value="#{p.curso}" />
+			</p:column>
+			
+			<p:column headerText="DataAplicação">
+						<p:outputLabel value="#{p.dataAplicacao}" />
+			</p:column>
+			
 		</p:dataTable>
 	</h:form>
 	</ui:define>

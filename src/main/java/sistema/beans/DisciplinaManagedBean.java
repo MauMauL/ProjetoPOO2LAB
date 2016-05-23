@@ -1,5 +1,6 @@
 package sistema.beans;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -14,13 +15,15 @@ import sistema.beans.datamodel.DisciplinaDataModel;
 import sistema.modelos.Conteudo;
 import sistema.modelos.Disciplina;
 import sistema.modelos.Professor;
+import sistema.modelos.Prova;
 import sistema.service.DisciplinaService;
 import sistema.service.ProfessorService;
 
 @ManagedBean
 @ViewScoped
-public class DisciplinaManagedBean 
+public class DisciplinaManagedBean  implements Serializable
 {
+	private static final long serialVersionUID = 1L;
 	private Disciplina disciplina = new Disciplina();
 	private Professor professor;
 	private List<Disciplina> disciplinas;
@@ -49,7 +52,7 @@ public class DisciplinaManagedBean
 	}
 
 	public void setDisciplinaSelecionada(Disciplina disciplinaSelecionada) {
-		this.disciplinaSelecionada = disciplinaSelecionada;
+		this.disciplinaSelecionada = discService.pesquisar(disciplinaSelecionada);
 	}
 	public DataModel<Disciplina> getDisciplinasDataModel() {
 		if (disciplinas == null)
@@ -60,6 +63,12 @@ public class DisciplinaManagedBean
 	public List<Conteudo> getConteudosDisciplina() {
 		if (disciplinaSelecionada != null) {
 			return discService.pesquisarConteudosDisciplina(disciplinaSelecionada);
+		} else
+			return null;
+	}
+	public List<Prova> getProvasDisciplina() {
+		if (disciplinaSelecionada != null) {
+			return discService.pesquisarProvasDisciplina(disciplinaSelecionada);
 		} else
 			return null;
 	}

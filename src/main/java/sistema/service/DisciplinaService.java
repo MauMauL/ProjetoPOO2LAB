@@ -7,6 +7,7 @@ import java.util.List;
 import sistema.generic.DisciplinaDAO;
 import sistema.modelos.Conteudo;
 import sistema.modelos.Disciplina;
+import sistema.modelos.Prova;
 
 
 public class DisciplinaService 
@@ -50,6 +51,17 @@ public class DisciplinaService
 		conteudos = disciplina.getConteudos();
 
 		return conteudos;
+	}
+	public List<Prova> pesquisarProvasDisciplina(Disciplina disciplina) 
+	{
+
+		List<Prova> provas;
+
+		disciplina = disciplinaDAO.getById(Disciplina.class, disciplina.
+				getCodigoDisc());
+		provas = disciplina.getProvas();
+
+		return provas;
 	}
 	public Disciplina pesquisar(Disciplina disciplina) 
 	{

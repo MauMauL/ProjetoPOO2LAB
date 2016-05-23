@@ -1,4 +1,4 @@
-package sistema.beans;
+	package sistema.beans;
 
 import java.util.List;
 
@@ -39,7 +39,7 @@ public class ProfessorManagedBean
 	}
 
 	public void setProfessorSelecionado(Professor professorSelecionado) {
-		this.professorSelecionado = professorSelecionado;
+		this.professorSelecionado = service.pesquisar(professorSelecionado);
 	}
 
 	public Professor getProfessor() {

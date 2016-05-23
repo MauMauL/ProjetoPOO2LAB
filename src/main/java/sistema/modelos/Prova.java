@@ -30,7 +30,7 @@ public class Prova implements Serializable
 	@ManyToOne
 	private Disciplina disciplina;
 	
-
+	@ManyToMany
 	private List<Pergunta> perguntas = new ArrayList<Pergunta>();
 	
 	
@@ -76,6 +76,10 @@ public class Prova implements Serializable
 	}
 	public void setPerguntas(List<Pergunta> perguntas) {
 		this.perguntas = perguntas;
+	}
+	public void addPergunta(Pergunta pergunta)
+	{
+		perguntas.add(pergunta);
 	}
 	@Override
 	public int hashCode() {
