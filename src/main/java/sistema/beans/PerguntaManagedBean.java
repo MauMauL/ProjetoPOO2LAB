@@ -3,13 +3,9 @@ package sistema.beans;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.model.DataModel;
 import org.primefaces.event.RowEditEvent;
-import sistema.beans.datamodel.DisciplinaDataModel;
 import sistema.modelos.Alternativa;
 import sistema.modelos.Dissertativa;
 import sistema.modelos.MultiplaEscolha;

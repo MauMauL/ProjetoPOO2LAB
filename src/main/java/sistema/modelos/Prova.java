@@ -2,6 +2,7 @@ package sistema.modelos;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Prova implements Serializable
@@ -25,7 +28,8 @@ public class Prova implements Serializable
 	
 	private String curso;
 	
-	private String dataAplicacao;
+	@Temporal(value = TemporalType.DATE)
+	private Date dataAplicacao;
 	
 	@ManyToOne
 	private Disciplina disciplina;
@@ -59,10 +63,10 @@ public class Prova implements Serializable
 	public void setCurso(String curso) {
 		this.curso = curso;
 	}
-	public String getDataAplicacao() {
+	public Date getDataAplicacao() {
 		return dataAplicacao;
 	}
-	public void setDataAplicacao(String dataAplicacao) {
+	public void setDataAplicacao(Date dataAplicacao) {
 		this.dataAplicacao = dataAplicacao;
 	}
 	public Disciplina getDisciplina() {
@@ -76,6 +80,10 @@ public class Prova implements Serializable
 	}
 	public void setPerguntas(List<Pergunta> perguntas) {
 		this.perguntas = perguntas;
+	}
+	public void addPergunta(Pergunta pergunta)
+	{
+		perguntas.add(pergunta);
 	}
 	public void addAlternativa(Alternativa alternativa)
 	{

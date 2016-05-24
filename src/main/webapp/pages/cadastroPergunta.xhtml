@@ -47,7 +47,7 @@
         <p:calendar id="dataCriacaoA" 
          value="#{perguntaManagedBean.alternativa.dataCriacao}" />
         <p:message for="dataCriacaoA"/>
- 
+        
 	      </h:panelGrid>
 	      </p:panel>
 	          <p:commandButton value="Salvar" 
@@ -236,8 +236,8 @@
 					<p:outputLabel value="#{p.dataCriacao}"/>
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText id="dataCriacao" value="#{p.dataCriacao}"
-							style="width:100%" />
+						<p:calendar id="dataCriacao" 
+         					value="#{p.dataCriacao}" style="width:100%" />
 					</f:facet>
 				</p:cellEditor>
 			</p:column>
@@ -248,7 +248,7 @@
          
        <p:column style="width:70px" 
        headerText="Opções">
-       
+        <p:rowEditor/>
        	<p:commandLink id="remover" styleClass="fa fa-trash"
 						style="text-align:center"
 						actionListener="#{perguntaManagedBean.removePergunta(p)}"

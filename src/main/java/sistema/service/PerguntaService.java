@@ -71,7 +71,6 @@ public class PerguntaService
 	}
 	public Pergunta pesquisar(Pergunta pergunta) 
 	{
-
 		pergunta = perguntaDAO.getById(Pergunta.class, pergunta.getCodPer());
 		perguntaDAO.closeEntityManager();
 		return pergunta;

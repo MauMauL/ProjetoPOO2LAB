@@ -52,6 +52,11 @@ public class Conteudo implements Serializable
 	public void setPerguntas(List<Pergunta> perguntas) {
 		this.perguntas = perguntas;
 	}
+	public void addPergunta(Pergunta pergunta)
+	{
+		perguntas.add(pergunta);
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

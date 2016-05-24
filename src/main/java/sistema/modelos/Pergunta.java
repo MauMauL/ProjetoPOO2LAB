@@ -28,13 +28,14 @@ public abstract class Pergunta implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long codPer;
 	
-	private String dificuldade;
+	private int dificuldade;
 	private int tempoEstimado;
 	
 	@Temporal(value = TemporalType.DATE)
 	private Date dataCriacao;
 	
 	private String enunciado;
+	
 	private int numeroPerguntas;
 	
 	@ManyToMany(mappedBy="perguntas")
@@ -43,7 +44,7 @@ public abstract class Pergunta implements Serializable{
 	private List<Prova> provas = new ArrayList<Prova>();
 	
 	@ManyToMany(mappedBy="perguntas")
-	@JoinTable( name="TblPerguntaProva",joinColumns = {@JoinColumn(name ="c_codPergunta")},
+	@JoinTable( name="TblPerguntaConteudo",joinColumns = {@JoinColumn(name ="c_codPergunta")},
 	inverseJoinColumns = {@JoinColumn(name ="c_codCont")})
 	private List<Conteudo> conteudos = new ArrayList<Conteudo>();
 	
@@ -55,10 +56,10 @@ public abstract class Pergunta implements Serializable{
 	public void setCodPer(int codPer) {
 		this.codPer = codPer;
 	}
-	public String getDificuldade() {
+	public int getDificuldade() {
 		return dificuldade;
 	}
-	public void setDificuldade(String dificuldade) {
+	public void setDificuldade(int dificuldade) {
 		this.dificuldade = dificuldade;
 	}
 	public int getTempoEstimado() {
@@ -74,35 +75,6 @@ public abstract class Pergunta implements Serializable{
 	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
-	/*public String getDataCriacao() {
-		
-		String dataCriacao = "";
-		
-		try {	 
-			SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yy");
-			dataCriacao = formatoData.format(this.dataCriacao.getTime());
-			 
-			return dataCriacao;
-			 
-			} catch (Exception e) 
-			{
-				System.out.println("Erro ao converter de Calendar para String");
-			}
-		return "";
-	}
-	public void setDataCriacao(String dataCriacao) {
-		
-		SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yy");
-		
-		this.dataCriacao = Calendar.getInstance();
-		
-		try{
-		this.dataCriacao.setTime(formatoData.parse(dataCriacao));
-		}catch(Exception e)
-		{
-			System.out.println("Erro ao converter de String para Calendar");
-		}
-	}*/
 	public String getEnunciado() {
 		return enunciado;
 	}
@@ -138,5 +110,36 @@ public abstract class Pergunta implements Serializable{
 	{
 		provas.add(prova);
 	}
+	public void addConteudo(Conteudo conteudo)
+	{
+		conteudos.add(conteudo);
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (codPer ^ (codPer >>> 32));
+		result = prime * result + ((enunciado == null) ? 0 : enunciado.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pergunta other = (Pergunta) obj;
+		if (codPer != other.codPer)
+			return false;
+		if (enunciado == null) {
+			if (other.enunciado != null)
+				return false;
+		} else if (!enunciado.equals(other.enunciado))
+			return false;
+		return true;
+	}
+	
 		
 }

@@ -35,16 +35,15 @@
 	    <p:message for="curso"/>
 	
 	   <p:outputLabel value="Data de Aplicação"/>
-	     <p:inputText id="dataAplicacao" value = 
-	     "#{provaManagedBean.prova.dataAplicacao}" 
-	    required="true" />
+	     <p:calendar id="dataAplicacao" 
+         value="#{provaManagedBean.prova.dataAplicacao}"  />
 	    <p:message for="dataAplicacao"/>
 	    
-	    <p:outputLabel value="Disciplina: "  />
+	    <p:outputLabel value="Disciplina:"  />
         <p:selectOneMenu value="#{provaManagedBean.disciplina}" 
         converter="converterDisciplina" panelStyle="width:180px"
       effect="fade" var="sm" style="width:191px" filter="true"
-       filterMatchMode="startsWith">
+       filterMatchMode="startsWith"  validateClient="true">
        
        <f:selectItem itemValue="" itemLabel="Selecione uma Disciplina" />
        
@@ -59,7 +58,28 @@
                 <h:outputText value="#{sm.nomeDisc}" />
             </p:column>
         </p:selectOneMenu>
-        
+     <!--    
+        <p:outputLabel for="perguntas" value="Perguntas:" />
+        <p:selectManyMenu id="perguntas" 
+        value="#{provaManagedBean.perguntasSelecionadas}" 
+        converter="converterPergunta" var="sp" filter="true" 
+        filterMatchMode="contains" showCheckbox="true" 
+        panelStyle="width:180px" style="width:191px">
+      
+      <f:selectItem itemValue="" itemLabel="Selecione uma Prova" />
+      
+       <f:selectItems value="#{provaManagedBean.perguntas}" 
+       var="perg" itemLabel="#{perg.enunciado}" itemValue="#{perg}" />
+ 
+            <p:column style="width:5%">
+                <h:outputText styleClass="fa-fa-paperclip" />
+            </p:column>
+ 
+            <p:column>
+                <h:outputText value="#{sp.enunciado}" />
+            </p:column>
+        </p:selectManyMenu>
+         -->
 	      </h:panelGrid>
 	      </p:panel>
 	          <p:commandButton value="Salvar" 
@@ -125,7 +145,7 @@
 					<p:outputLabel value="#{p.dataAplicacao}"/>
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText id="dataAplicacao" value="#{p.dataAplicacao}"
+						<p:calendar id="dataAplicacao" value="#{p.dataAplicacao}"
 							style="width:100%" />
 					</f:facet>
 				</p:cellEditor>

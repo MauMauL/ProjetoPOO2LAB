@@ -43,7 +43,28 @@
                 <h:outputText value="#{sm.nomeDisc}" />
             </p:column>
         </p:selectOneMenu>
-        
+   <!--       
+        <p:outputLabel for="perguntas" value="Perguntas:" />
+        <p:selectManyMenu id="perguntas" 
+        value="#{conteudoManagedBean.perguntasSelecionadas}" 
+        converter="converterPergunta" var="sp" filter="true" 
+        filterMatchMode="contains" showCheckbox="true" 
+        panelStyle="width:180px" style="width:191px">
+      
+      <f:selectItem itemValue="" itemLabel="Selecione uma Pergunta" />
+      
+       <f:selectItems value="#{conteudoManagedBean.perguntas}" 
+       var="perg" itemLabel="#{perg.enunciado}" itemValue="#{perg}" />
+ 
+            <p:column style="width:5%">
+                <h:outputText styleClass="fa-fa-paperclip" />
+            </p:column>
+ 
+            <p:column>
+                <h:outputText value="#{sp.enunciado}" />
+            </p:column>
+        </p:selectManyMenu>
+        -->
 	      </h:panelGrid>
 	      </p:panel>
 	          <p:commandButton value="Salvar" 
@@ -79,7 +100,7 @@
          
        <p:column style="width:70px" 
        headerText="Opções">
-       
+        <p:rowEditor/>
        	<p:commandLink id="remover" styleClass="fa fa-trash"
 						style="text-align:center"
 						actionListener="#{conteudoManagedBean.remover(c)}"

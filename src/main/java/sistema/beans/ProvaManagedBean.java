@@ -1,10 +1,13 @@
 package sistema.beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import sistema.modelos.Disciplina;
+import sistema.modelos.Pergunta;
 import sistema.modelos.Prova;
 import sistema.service.DisciplinaService;
+import sistema.service.PerguntaService;
 import sistema.service.ProvaService;
 
 import javax.faces.bean.ManagedBean;
@@ -14,18 +17,25 @@ import org.primefaces.event.RowEditEvent;
 
 @ManagedBean
 @ViewScoped
-
 public class ProvaManagedBean 
 {
 	
 	private Prova prova = new Prova();
 	private Disciplina disciplina;
+	private List<Pergunta> perguntasSelecionadas;
 	private List<Prova> provas;
+	private PerguntaService perguntaService = new PerguntaService();
 	private ProvaService provaService = new ProvaService();
 	private DisciplinaService discService = new DisciplinaService();
 	
 	public void salvar() 
 	{
+		/*for(int i = 0; i < perguntasSelecionadas.size();i++)
+		{
+			prova.addPergunta(perguntasSelecionadas.get(i));
+			perguntasSelecionadas.get(i).addProva(prova);
+		}*/
+		
 		disciplina.addProva(prova);
 		prova.setDisciplina(disciplina);
 		
@@ -39,6 +49,14 @@ public class ProvaManagedBean
 	}
 	
 	
+	public List<Pergunta> getPerguntasSelecionadas() {
+		return perguntasSelecionadas;
+	}
+
+	public void setPerguntasSelecionadas(List<Pergunta> perguntasSelecionadas) {
+		this.perguntasSelecionadas = perguntasSelecionadas;
+	}
+
 	public Disciplina getDisciplina() {
 		return disciplina;
 	}
@@ -70,6 +88,9 @@ public class ProvaManagedBean
 			provas = provaService.getProvas();
 
 		return provas;
+	}
+	public List<Pergunta> getPerguntas() {
+		return perguntaService.getPerguntas();
 	}
 
 	public void remover(Prova prova) {
