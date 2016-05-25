@@ -1,6 +1,8 @@
 package sistema.beans;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -17,7 +19,7 @@ import sistema.service.PerguntaService;
 
 @ManagedBean
 @ViewScoped
-public class PerguntaManagedBean 
+public class PerguntaManagedBean
 {
 	private static final long serialVersionUID = 1L;
 	
@@ -28,8 +30,9 @@ public class PerguntaManagedBean
 	private List<Pergunta> perguntas;
 	private PerguntaService perguntaService = new PerguntaService();
 
+   
 	public void salvarAlternativa() 
-	{
+	{	
 		int nPergunta = 0;
 		
 		nPergunta = perguntas.size();
@@ -42,7 +45,6 @@ public class PerguntaManagedBean
 		{
 			perguntas.add(alternativa);
 		}
-	
 		alternativa = new Alternativa();
 
 	}

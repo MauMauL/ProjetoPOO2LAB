@@ -3,6 +3,7 @@ package sistema.beans;
 import java.util.ArrayList;
 import java.util.List;
 
+import sistema.modelos.Conteudo;
 import sistema.modelos.Disciplina;
 import sistema.modelos.Pergunta;
 import sistema.modelos.Prova;
@@ -22,7 +23,6 @@ public class ProvaManagedBean
 	
 	private Prova prova = new Prova();
 	private Disciplina disciplina;
-	private List<Pergunta> perguntasSelecionadas;
 	private List<Prova> provas;
 	private PerguntaService perguntaService = new PerguntaService();
 	private ProvaService provaService = new ProvaService();
@@ -30,11 +30,12 @@ public class ProvaManagedBean
 	
 	public void salvar() 
 	{
-		/*for(int i = 0; i < perguntasSelecionadas.size();i++)
+
+		for(int i = 0; i < perguntaService.getPerguntas().size(); i++)
 		{
-			prova.addPergunta(perguntasSelecionadas.get(i));
-			perguntasSelecionadas.get(i).addProva(prova);
-		}*/
+			prova.addPergunta(perguntaService.getPerguntas().get(i));
+			perguntaService.getPerguntas().get(i).addProva(prova);
+		}
 		
 		disciplina.addProva(prova);
 		prova.setDisciplina(disciplina);
@@ -48,15 +49,6 @@ public class ProvaManagedBean
 		disciplina = null;
 	}
 	
-	
-	public List<Pergunta> getPerguntasSelecionadas() {
-		return perguntasSelecionadas;
-	}
-
-	public void setPerguntasSelecionadas(List<Pergunta> perguntasSelecionadas) {
-		this.perguntasSelecionadas = perguntasSelecionadas;
-	}
-
 	public Disciplina getDisciplina() {
 		return disciplina;
 	}
@@ -101,5 +93,26 @@ public class ProvaManagedBean
 
 		Prova p = ((Prova) event.getObject());
 		provaService.alterar(p);
+	}
+	public void geraProva(int np, int dp)
+	{
+		List<Pergunta> lp = new ArrayList<Pergunta>();
+		List<Conteudo> lc = new ArrayList<Conteudo>();
+		Disciplina d;
+		
+		
+		d = prova.getDisciplina();
+		lc = prova.getDisciplina().getConteudos();
+		lc = d.getConteudos();
+		
+		for(int i = 0; i < perguntaService.getPerguntas().size(); i++)
+		{
+			if(prova.getPerguntas().get(i).getDificuldade() <= dp)
+			{
+				lp.add(prova.getPerguntas().get(i));
+			}
+		}
+		
+		
 	}
 }

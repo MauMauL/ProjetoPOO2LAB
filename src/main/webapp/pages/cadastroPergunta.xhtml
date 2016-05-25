@@ -8,49 +8,49 @@
 	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
 	
 	<ui:define name="title">
-		<h:outputText value="Cadastro de Perguntas" />
+		<h:outputText value="#{msg['pages.cadastroPergunta.title']}" />
 	</ui:define>
 	
 
 	<ui:define name="principal">
 	 	 
 	 	 
-<h3> <p:outputLabel value="Cadastro de Perguntas" /></h3>
+<h3> <p:outputLabel value="#{msg['pages.cadastroPergunta.menu']}" /></h3>
 <br/>
 <br/>
 
 	 <h:form id="formPerguntaAlternativa">
 	    
-	    <p:panel  header="Cadastro de Alternativas" 
+	    <p:panel  header="#{msg['pages.cadastroPergunta.titleAlternativa']}" 
 	    style="margin-bottom:10px;">
 	    <h:panelGrid columns="3">
 	     
-	     <p:outputLabel value="Enunciado:"/>
+	     <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.enunciado']}"/>
 	     <p:inputText id="enunciadoA" 
 	     value = "#{perguntaManagedBean.alternativa.enunciado}" 
 	    required="true" />
 	    <p:message for="enunciadoA"/>
 	
-	 <p:outputLabel value="Dificuldade:"/>
+	 <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.dificuldade']}"/>
 	     <p:inputText id="dificuldadeA" 
 	     value = "#{perguntaManagedBean.alternativa.dificuldade}" 
 	    required="true" />
 	    <p:message for="dificuldadeA"/>
 	    
-	     <p:outputLabel value="Tempo Estimado:"/>
+	     <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.tempoEstimado']}"/>
 	     <p:inputText id="tempoEa" 
 	     value = "#{perguntaManagedBean.alternativa.tempoEstimado}" 
 	    required="true" />
 	    <p:message for="tempoEa"/>
 	    
-		 <p:outputLabel value="Data de Criação:" />
+		 <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.dataCriacao']}" />
         <p:calendar id="dataCriacaoA" 
          value="#{perguntaManagedBean.alternativa.dataCriacao}" />
         <p:message for="dataCriacaoA"/>
         
 	      </h:panelGrid>
 	      </p:panel>
-	          <p:commandButton value="Salvar" 
+	          <p:commandButton value="#{msg['pages.comuns.form.btnSalvar']}" 
 	      action="#{perguntaManagedBean.salvarAlternativa}"
 	      	icon="fa fa-save" update=":formPerguntaAlternativa 
 	      	:formTablePergunta:tablePergunta"
@@ -62,36 +62,36 @@
 	   
 	    <h:form id="formDissertativa">
 	    
-	    <p:panel  header="Cadastro de Dissertativas" 
+	    <p:panel  header="#{msg['pages.cadastroPergunta.titleDissertativa']}" 
 	    style="margin-bottom:10px;">
 	    <h:panelGrid columns="3">
 	     
-	     <p:outputLabel value="Enunciado:"/>
+	     <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.enunciado']}"/>
 	     <p:inputText id="enunciadoD" 
 	     value = "#{perguntaManagedBean.dissertativa.enunciado}" 
 	    required="true" />
 	    <p:message for="enunciadoD"/>
 	
-	 <p:outputLabel value="Dificuldade:"/>
+	 <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.dificuldade']}"/>
 	     <p:inputText id="dificuldadeD" 
 	     value = "#{perguntaManagedBean.dissertativa.dificuldade}" 
 	    required="true" />
 	    <p:message for="dificuldadeD"/>
 	    
-	     <p:outputLabel value="Tempo Estimado:"/>
+	     <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.tempoEstimado']}"/>
 	     <p:inputText id="tempoEd" 
 	     value = "#{perguntaManagedBean.dissertativa.tempoEstimado}" 
 	    required="true" />
 	    <p:message for="tempoEd"/>
 	    
-		 <p:outputLabel value="Data de Criação:" />
+		 <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.dataCriacao']}" />
         <p:calendar id="dataCriacaoD"
          value="#{perguntaManagedBean.dissertativa.dataCriacao}" />
         <p:message for="dataCriacaoD"/>
         
 	      </h:panelGrid>
 	      </p:panel>
-	          <p:commandButton value="Salvar" 
+	          <p:commandButton value="#{msg['pages.comuns.form.btnSalvar']}" 
 	      action="#{perguntaManagedBean.salvarDissertativa}"
 	      	icon="fa fa-save" update=":formDissertativa 
 	      	:formTablePergunta:tablePergunta"
@@ -104,36 +104,36 @@
 	   
 	    <h:form id="formMultiplaEscolha">
 	    
-	    <p:panel  header="Cadastro de Multipla Escolha" 
+	    <p:panel  header="#{msg['pages.cadastroPergunta.titleMultiplaEscolha']}" 
 	    style="margin-bottom:10px;">
 	    <h:panelGrid columns="3">
 	     
-	     <p:outputLabel value="Enunciado:"/>
+	     <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.enunciado']}"/>
 	     <p:inputText id="enunciadoM" 
 	     value = "#{perguntaManagedBean.multiplaEscolha.enunciado}" 
 	    required="true" />
 	    <p:message for="enunciadoM"/>
 	
-	 <p:outputLabel value="Dificuldade:"/>
+	 <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.dificuldade']}"/>
 	     <p:inputText id="dificuldadeM" 
 	     value = "#{perguntaManagedBean.multiplaEscolha.dificuldade}" 
 	    required="true" />
 	    <p:message for="dificuldadeM"/>
 	    
-	     <p:outputLabel value="Tempo Estimado:"/>
+	     <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.tempoEstimado']}"/>
 	     <p:inputText id="tempoEm" 
 	     value = "#{perguntaManagedBean.multiplaEscolha.tempoEstimado}" 
 	    required="true" />
 	    <p:message for="tempoEm"/>
 	    
-		 <p:outputLabel value="Data de Criação:" />
+		 <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.dataCriacao']}" />
         <p:calendar id="dataCriacaoM"
          value="#{perguntaManagedBean.multiplaEscolha.dataCriacao}" />
         <p:message for="dataCriacaoM"/>
         
 	      </h:panelGrid>
 	      </p:panel>
-	          <p:commandButton value="Salvar" 
+	          <p:commandButton value="#{msg['pages.comuns.form.btnSalvar']}" 
 	      action="#{perguntaManagedBean.salvarMultiplaEscolha}"
 	      	icon="fa fa-save" update=":formMultiplaEscolha 
 	      	:formTablePergunta:tablePergunta"
@@ -146,36 +146,36 @@
 	   
 	    <h:form id="formVerdadeiroFalso">
 	    
-	    <p:panel  header="Cadastro de Verdadeiro ou Falso" 
+	    <p:panel  header="#{msg['pages.cadastroPergunta.titleVerdadeiroFalso']}" 
 	    style="margin-bottom:10px;">
 	    <h:panelGrid columns="3">
 	     
-	     <p:outputLabel value="Enunciado:"/>
+	     <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.enunciado']}"/>
 	     <p:inputText id="enunciadoV" 
 	     value = "#{perguntaManagedBean.verdadeiroFalso.enunciado}" 
 	    required="true" />
 	    <p:message for="enunciadoV"/>
 	
-	 <p:outputLabel value="Dificuldade:"/>
+	 <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.dificuldade']}"/>
 	     <p:inputText id="dificuldadeV" 
 	     value = "#{perguntaManagedBean.verdadeiroFalso.dificuldade}" 
 	    required="true" />
 	    <p:message for="dificuldadeV"/>
 	    
-	     <p:outputLabel value="Tempo Estimado:"/>
+	     <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.tempoEstimado']}"/>
 	     <p:inputText id="tempoV" 
 	     value = "#{perguntaManagedBean.verdadeiroFalso.tempoEstimado}" 
 	    required="true" />
 	    <p:message for="tempoV"/>
 	    
-		 <p:outputLabel value="Data de Criação:" />
+		 <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.dataCriacao']}" />
         <p:calendar id="dataCriacaoV"
          value="#{perguntaManagedBean.verdadeiroFalso.dataCriacao}" />
         <p:message for="dataCriacaoV"/>
         
 	      </h:panelGrid>
 	      </p:panel>
-	          <p:commandButton value="Salvar" 
+	          <p:commandButton value="#{msg['pages.comuns.form.btnSalvar']}" 
 	      action="#{perguntaManagedBean.salvarVerdadeiroFalso}"
 	      	icon="fa fa-save" update=":formVerdadeiroFalso 
 	      	:formTablePergunta:tablePergunta"
@@ -185,16 +185,18 @@
 	   
 	   <br/>
 	   <br/>
-	   
+	   <h3><h:outputLabel value="#{msg['pages.cadastroPergunta.table.title']}" /></h3>
+	  <br/>
+	  <br/>
 	   <h:form id="formTablePergunta">
 	   <p:dataTable value="#{perguntaManagedBean.perguntas}" var="p"
 	   id="tablePergunta" editable="true">
 	 
-	    <p:column headerText="Codigo" > <!--filterBy="#{d.codigoDisc}"-->
+	    <p:column headerText="#{msg['pages.cadastroPergunta.table.codigo']}" > <!--filterBy="#{d.codigoDisc}"-->
         <p:outputLabel value="#{p.codPer}" />
       </p:column>
       
-        <p:column headerText="Enunciado">
+        <p:column headerText="#{msg['pages.cadastroPergunta.table.enunciado']}">
 				<p:cellEditor>
 					<f:facet name="output">
 					<p:outputLabel value="#{p.enunciado}"/>
@@ -206,7 +208,7 @@
 				</p:cellEditor>
 			</p:column>
 			
-			<p:column headerText="Dificuldade">
+			<p:column headerText="#{msg['pages.cadastroPergunta.table.dificuldade']}">
 				<p:cellEditor>
 					<f:facet name="output">
 					<p:outputLabel value="#{p.dificuldade}"/>
@@ -218,7 +220,7 @@
 				</p:cellEditor>
 			</p:column>
          
-         <p:column headerText="Tempo Estimado">
+         <p:column headerText="#{msg['pages.cadastroPergunta.table.tempoEstimado']}">
 				<p:cellEditor>
 					<f:facet name="output">
 					<p:outputLabel value="#{p.tempoEstimado}"/>
@@ -230,10 +232,12 @@
 				</p:cellEditor>
 			</p:column>
 			
-			 <p:column headerText="Data de Criação">
+			 <p:column headerText="#{msg['pages.cadastroPergunta.table.dataCriacao']}">
 				<p:cellEditor>
 					<f:facet name="output">
-					<p:outputLabel value="#{p.dataCriacao}"/>
+					<p:outputLabel value="#{p.dataCriacao}">
+					<f:convertDateTime pattern="MM/dd/yyyy" />
+					</p:outputLabel>
 					</f:facet>
 					<f:facet name="input">
 						<p:calendar id="dataCriacao" 
@@ -242,12 +246,12 @@
 				</p:cellEditor>
 			</p:column>
 			
-			<p:column headerText="Numero de Perguntas Cadastradas" > <!--filterBy="#{d.codigoDisc}"-->
+			<p:column headerText="#{msg['pages.cadastroPergunta.table.numeroPerguntas']}" > <!--filterBy="#{d.codigoDisc}"-->
         <p:outputLabel value="#{p.numeroPerguntas}" />
       </p:column>
          
        <p:column style="width:70px" 
-       headerText="Opções">
+       headerText="#{msg['pages.comuns.form.opcoes']}">
         <p:rowEditor/>
        	<p:commandLink id="remover" styleClass="fa fa-trash"
 						style="text-align:center"

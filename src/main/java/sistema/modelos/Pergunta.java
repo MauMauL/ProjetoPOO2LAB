@@ -21,7 +21,8 @@ import javax.persistence.JoinColumn;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-public abstract class Pergunta implements Serializable{
+public abstract class Pergunta implements Serializable, Comparable
+{
 	
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -113,6 +114,21 @@ public abstract class Pergunta implements Serializable{
 	public void addConteudo(Conteudo conteudo)
 	{
 		conteudos.add(conteudo);
+	}
+	@Override
+	public int compareTo(Object obj) 
+	{
+		int ret = 0;
+    	
+		if(dificuldade > ((Pergunta)obj).getDificuldade())
+		{
+			ret = 1;
+		}
+		else if(dificuldade < ((Pergunta)obj).getDificuldade())
+		{
+			ret = -1;
+		}
+		return ret;
 	}
 	@Override
 	public int hashCode() {

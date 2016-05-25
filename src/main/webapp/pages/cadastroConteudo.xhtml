@@ -24,13 +24,14 @@
 	    required="true" />
 	    <p:message for="nome"/>
 	
-	    <p:outputLabel value="Disciplina: "  />
+	    <p:outputLabel value="#{msg['pages.cadastroConteudo.form.disciplina']}"  />
         <p:selectOneMenu value="#{conteudoManagedBean.disciplina}" 
         converter="converterDisciplina" panelStyle="width:180px"
       effect="fade" var="sm" style="width:191px" filter="true"
        filterMatchMode="startsWith">
        
-       <f:selectItem itemValue="" itemLabel="Selecione uma Disciplina" />
+       <f:selectItem itemValue="" 
+       itemLabel="#{msg['pages.cadastroConteudo.form.sm.disciplina']}" />
        
        <f:selectItems value="#{conteudoManagedBean.disciplinas}" var="disc" 
         itemValue="#{disc}" itemLabel="#{disc.nomeDisc}"/>
@@ -67,8 +68,8 @@
         -->
 	      </h:panelGrid>
 	      </p:panel>
-	          <p:commandButton value="Salvar" 
-	      action="#{conteudoManagedBean.salvar}"
+	          <p:commandButton value="#{msg['pages.comuns.form.btnSalvar']}" 
+	      	action="#{conteudoManagedBean.salvar}"
 	      	icon="fa fa-save" update=":formConteudo 
 	      	:formTableConteudo:tableConteudo"
 	      	styleClass="ui-priority-primary" validateClient="true"
@@ -76,17 +77,18 @@
 	   </h:form>
 	   
 	   <br/>
+	   <br/>
 	   
-
+	<h3><h:outputLabel value="#{msg['pages.cadastroConteudo.table.title']}"/></h3>
 	   <h:form id="formTableConteudo">
 	   <p:dataTable value="#{conteudoManagedBean.conteudos}" var="c"
 	   id="tableConteudo" editable="true">
 	 
-	    <p:column headerText="Codigo" > <!--filterBy="#{d.codigoDisc}"-->
+	    <p:column headerText="#{msg['pages.cadastroConteudo.table.codigo']}" > <!--filterBy="#{d.codigoDisc}"-->
         <p:outputLabel value="#{c.codigoCont}" />
       </p:column>
       
-        <p:column headerText="Nome">
+        <p:column headerText="#{msg['pages.cadastroConteudo.table.nome']}">
 				<p:cellEditor>
 					<f:facet name="output">
 					<p:outputLabel value="#{c.nomeCont}"/>
@@ -99,7 +101,7 @@
 			</p:column>
          
        <p:column style="width:70px" 
-       headerText="Opções">
+       headerText="#{msg['pages.comuns.form.opcoes']}">
         <p:rowEditor/>
        	<p:commandLink id="remover" styleClass="fa fa-trash"
 						style="text-align:center"

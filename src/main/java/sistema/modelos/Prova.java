@@ -28,6 +28,8 @@ public class Prova implements Serializable
 	
 	private String curso;
 	
+	private String Difuculdade;
+	
 	@Temporal(value = TemporalType.DATE)
 	private Date dataAplicacao;
 	

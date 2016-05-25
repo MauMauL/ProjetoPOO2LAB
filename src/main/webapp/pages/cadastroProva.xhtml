@@ -8,7 +8,7 @@
 	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
 	
 	<ui:define name="title">
-		<h:outputText value="Cadastro de Provas" />
+		<h:outputText value="#{msg['pages.cadastroProva.title']}" />
 	</ui:define>
 	
 
@@ -16,36 +16,36 @@
 	 	 
 <h:form id="formProva">
 
-	    <p:panel  header="Cadastro de Provas" style="margin-bottom:10px;">
+	    <p:panel  header="#{msg['pages.cadastroProva.menu']}" style="margin-bottom:10px;">
 	    <h:panelGrid columns="3">
 	     
-	     <p:outputLabel value="Nome:"/>
+	     <p:outputLabel value="#{msg['pages.cadastroProva.form.nome']}"/>
 	     <p:inputText id="nome" value = "#{provaManagedBean.prova.nomeProva}" 
 	    required="true" />
 	    <p:message for="nome"/>
 	     
-	     <p:outputLabel value="Turma:"/>
+	     <p:outputLabel value="#{msg['pages.cadastroProva.form.turma']}"/>
 	     <p:inputText id="turma" value = "#{provaManagedBean.prova.turma}" 
 	    required="true" />
 	    <p:message for="turma"/>
 	    
-	       <p:outputLabel value="Curso:"/>
+	       <p:outputLabel value="#{msg['pages.cadastroProva.form.curso']}"/>
 	     <p:inputText id="curso" value = "#{provaManagedBean.prova.curso}" 
 	    required="true" />
 	    <p:message for="curso"/>
 	
-	   <p:outputLabel value="Data de Aplicação"/>
+	   <p:outputLabel value="#{msg['pages.cadastroProva.form.dataAplicacao']}"/>
 	     <p:calendar id="dataAplicacao" 
          value="#{provaManagedBean.prova.dataAplicacao}"  />
 	    <p:message for="dataAplicacao"/>
 	    
-	    <p:outputLabel value="Disciplina:"  />
+	    <p:outputLabel value="#{msg['pages.cadastroProva.form.disciplina']}"  />
         <p:selectOneMenu value="#{provaManagedBean.disciplina}" 
         converter="converterDisciplina" panelStyle="width:180px"
       effect="fade" var="sm" style="width:191px" filter="true"
        filterMatchMode="startsWith"  validateClient="true">
        
-       <f:selectItem itemValue="" itemLabel="Selecione uma Disciplina" />
+       <f:selectItem itemValue="" itemLabel="#{msg['pages.cadastroProva.form.sm.disciplina']}" />
        
        <f:selectItems value="#{provaManagedBean.disciplinas}" var="disc" 
         itemValue="#{disc}" itemLabel="#{disc.nomeDisc}"/>
@@ -58,40 +58,21 @@
                 <h:outputText value="#{sm.nomeDisc}" />
             </p:column>
         </p:selectOneMenu>
-     <!--    
-        <p:outputLabel for="perguntas" value="Perguntas:" />
-        <p:selectManyMenu id="perguntas" 
-        value="#{provaManagedBean.perguntasSelecionadas}" 
-        converter="converterPergunta" var="sp" filter="true" 
-        filterMatchMode="contains" showCheckbox="true" 
-        panelStyle="width:180px" style="width:191px">
-      
-      <f:selectItem itemValue="" itemLabel="Selecione uma Prova" />
-      
-       <f:selectItems value="#{provaManagedBean.perguntas}" 
-       var="perg" itemLabel="#{perg.enunciado}" itemValue="#{perg}" />
- 
-            <p:column style="width:5%">
-                <h:outputText styleClass="fa-fa-paperclip" />
-            </p:column>
- 
-            <p:column>
-                <h:outputText value="#{sp.enunciado}" />
-            </p:column>
-        </p:selectManyMenu>
-         -->
+        
 	      </h:panelGrid>
 	      </p:panel>
-	          <p:commandButton value="Salvar" 
+	          <p:commandButton value="#{msg['pages.comuns.form.btnSalvar']}" 
 	      action="#{provaManagedBean.salvar}"
 	      	icon="fa fa-save" update=":formProva, 
 	      	:formTableProva:tableProva"
 	      	styleClass="ui-priority-primary" validateClient="true"
 	      	/>
+	      
+	      	
 	   </h:form>
 	   
 	   <h:form id="formTableProva">
-	    <h3><h:outputLabel value="Provas Cadastradas"/></h3>
+	    <h3><h:outputLabel value="#{msg['pages.cadastroProva.table.title']}"/></h3>
 	   
 	   <br/>
 	     <p:growl id="growl" showDetail="true" />
@@ -99,11 +80,11 @@
 	   <p:dataTable value="#{provaManagedBean.provas}" var="p"
 	   id="tableProva" editable="true" >
 	      
-	    <p:column headerText="Codigo" > <!--filterBy="#{d.codigoDisc}"-->
+	    <p:column headerText="#{msg['pages.cadastroProva.table.codigo']}" > <!--filterBy="#{d.codigoDisc}"-->
         <p:outputLabel value="#{p.codProva}" />
       </p:column>
       
-       <p:column headerText="Nome">
+       <p:column headerText="#{msg['pages.cadastroProva.table.nome']}">
 				<p:cellEditor>
 					<f:facet name="output">
 					<p:outputLabel value="#{p.nomeProva}"/>
@@ -115,7 +96,7 @@
 				</p:cellEditor>
 			</p:column>
       
-        <p:column headerText="Turma">
+        <p:column headerText="#{msg['pages.cadastroProva.table.turma']}">
 				<p:cellEditor>
 					<f:facet name="output">
 					<p:outputLabel value="#{p.turma}"/>
@@ -127,7 +108,7 @@
 				</p:cellEditor>
 			</p:column>
 			
-			     <p:column headerText="Curso">
+			     <p:column headerText="#{msg['pages.cadastroProva.table.curso']}">
 				<p:cellEditor>
 					<f:facet name="output">
 					<p:outputLabel value="#{p.curso}"/>
@@ -139,10 +120,12 @@
 				</p:cellEditor>
 			</p:column>
             
-            <p:column headerText="Data de Aplicação">
+            <p:column headerText="#{msg['pages.cadastroProva.table.dataAplicacao']}">
 				<p:cellEditor>
 					<f:facet name="output">
-					<p:outputLabel value="#{p.dataAplicacao}"/>
+					<p:outputLabel value="#{p.dataAplicacao}">
+					<f:convertDateTime pattern="MM/dd/yyyy" />
+					</p:outputLabel>
 					</f:facet>
 					<f:facet name="input">
 						<p:calendar id="dataAplicacao" value="#{p.dataAplicacao}"
@@ -152,7 +135,7 @@
 			</p:column>
 			
        <p:column style="width:70px" 
-       headerText="Opções">
+       headerText="#{msg['pages.comuns.form.opcoes']}">
        <p:rowEditor/>
        	<p:commandLink id="remover" styleClass="fa fa-trash"
 						style="text-align:center"
@@ -161,9 +144,12 @@
        </p:column>
 	   </p:dataTable>
 	     </h:form>
-
+ 	
+	      
 <br/>	     
-	   
+<br/>
+<h3><h:outputLabel value="#{msg['pages.cadastroProva.gerarProva.title']}"/></h3>
+<br/>
 	   
 	</ui:define>
 </ui:composition>
