@@ -1,10 +1,13 @@
 package sistema.beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import org.primefaces.event.RowEditEvent;
+import org.primefaces.model.DualListModel;
 
 import sistema.modelos.Conteudo;
 import sistema.modelos.Disciplina;
@@ -21,22 +24,20 @@ public class ConteudoManagedBean
 	private Conteudo conteudo = new Conteudo();
 	private List<Pergunta> perguntasSelecionadas;
 	private List<Conteudo> conteudos;
+	private List<Pergunta> perguntas;
 	private Disciplina disciplina;
 	private ConteudoService contService = new ConteudoService();
 	private DisciplinaService discService = new DisciplinaService();
 	private PerguntaService perguntaService = new PerguntaService();
 	
-	
+
 	public void salvar() 
 	{
 		disciplina.addConteudo(conteudo);
 		conteudo.setDisciplina(disciplina);
 		
-		/*for(int i = 0; i < perguntasSelecionadas.size();i++)
-		{
-			conteudo.addPergunta(perguntasSelecionadas.get(i));
-			perguntasSelecionadas.get(i).addConteudo(conteudo);
-		}*/
+		adicionaPerguntas();
+		
 		conteudo = contService.salvar(conteudo);
 
 		if (conteudos != null)
@@ -46,6 +47,20 @@ public class ConteudoManagedBean
 		disciplina = null;
 
 	}
+	
+
+	public List<Pergunta> getPerguntas() {
+		if(perguntas == null)
+		perguntas = perguntaService.getPerguntas();
+			
+		return perguntas;
+	}
+
+
+	public void setPerguntas(List<Pergunta> perguntas) {
+		this.perguntas = perguntas;
+	}
+
 
 	public List<Pergunta> getPerguntasSelecionadas() {
 		return perguntasSelecionadas;
@@ -54,9 +69,7 @@ public class ConteudoManagedBean
 	public void setPerguntasSelecionadas(List<Pergunta> perguntasSelecionadas) {
 		this.perguntasSelecionadas = perguntasSelecionadas;
 	}
-	public List<Pergunta> getPerguntas() {
-		return perguntaService.getPerguntas();
-	}
+
 	public List<Disciplina> getDisciplinas() 
 	{
 		return discService.getDisciplinas();
@@ -95,7 +108,13 @@ public class ConteudoManagedBean
 
 		return conteudos;
 	}
-
+	public void adicionaPerguntas()
+	{
+		for(int i = 0; i < perguntasSelecionadas.size(); i++)
+		{
+			conteudo.addPergunta(perguntasSelecionadas.get(i));
+		}
+	}
 	public void onRowEdit(RowEditEvent event) {
 
 		Conteudo c = ((Conteudo) event.getObject());

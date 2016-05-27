@@ -34,6 +34,21 @@
 	    required="true" />
 	    <p:message for="curso"/>
 	
+	 <p:outputLabel value="#{msg['pages.cadastroProva.form.dificuldade']}"/>
+	     <p:inputText id="dificuldade" value = "#{provaManagedBean.prova.dificuldade}" 
+	    required="true" />
+	    <p:message for="dificuldade"/>
+	    
+	     <p:outputLabel value="#{msg['pages.cadastroProva.form.dificuldadeDaPergunta']}"/>
+	     <p:inputText id="dificuldadePergunta" value = "#{provaManagedBean.prova.dificuldadeP}" 
+	    required="true" />
+	    <p:message for="dificuldadePergunta"/>
+	    
+	     <p:outputLabel value="#{msg['pages.cadastroProva.form.numeroPergunta']}"/>
+	     <p:inputText id="numeroPergunta" value = "#{provaManagedBean.prova.numeroPergunta}" 
+	    required="true" />
+	    <p:message for="numeroPergunta"/>
+	    
 	   <p:outputLabel value="#{msg['pages.cadastroProva.form.dataAplicacao']}"/>
 	     <p:calendar id="dataAplicacao" 
          value="#{provaManagedBean.prova.dataAplicacao}"  />
@@ -43,8 +58,8 @@
         <p:selectOneMenu value="#{provaManagedBean.disciplina}" 
         converter="converterDisciplina" panelStyle="width:180px"
       effect="fade" var="sm" style="width:191px" filter="true"
-       filterMatchMode="startsWith"  validateClient="true">
-       
+       filterMatchMode="startsWith"  validateClient="true" >
+      
        <f:selectItem itemValue="" itemLabel="#{msg['pages.cadastroProva.form.sm.disciplina']}" />
        
        <f:selectItems value="#{provaManagedBean.disciplinas}" var="disc" 
@@ -58,18 +73,36 @@
                 <h:outputText value="#{sm.nomeDisc}" />
             </p:column>
         </p:selectOneMenu>
-        
-	      </h:panelGrid>
-	      </p:panel>
-	          <p:commandButton value="#{msg['pages.comuns.form.btnSalvar']}" 
-	      action="#{provaManagedBean.salvar}"
-	      	icon="fa fa-save" update=":formProva, 
+         <p:message for="numeroPergunta"/>
+ 
+  <p:outputLabel value="#{msg['pages.cadastroProva.form.conteudos']}"  />
+        <p:selectManyMenu id="perguntas" 
+        value="#{provaManagedBean.conteudosSelecionados}" 
+        converter="converterConteudo"
+        var="sc" filter="true" filterMatchMode="contains" 
+        showCheckbox="true" panelStyle="width:180px">
+  		 <f:selectItems value="#{provaManagedBean.conteudos}" 
+  		  style="width:191px" var="perg" 
+  		 itemLabel="#{cont.nomeCont}" itemValue="#{cont}" />
+            <p:column>
+                <h:outputText style="width:10%"
+                styleClass="fa fa-file-text" />
+            </p:column>
+ 
+            <p:column>
+                <h:outputText value="#{sc.nomeCont}" />
+            </p:column>
+        </p:selectManyMenu>
+	      	</h:panelGrid>
+	      	</p:panel>
+	      	    <p:commandButton value="#{msg['pages.comuns.form.btnSalvar']}" 
+	      	action="#{conteudoManagedBean.salvar}"
+	      	icon="fa fa-save" update=":formProva 
 	      	:formTableProva:tableProva"
 	      	styleClass="ui-priority-primary" validateClient="true"
 	      	/>
-	      
-	      	
 	   </h:form>
+	   <br/>
 	   
 	   <h:form id="formTableProva">
 	    <h3><h:outputLabel value="#{msg['pages.cadastroProva.table.title']}"/></h3>

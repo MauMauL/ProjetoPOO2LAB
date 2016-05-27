@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+
 @Entity
 public class Prova implements Serializable
 {
@@ -27,8 +28,12 @@ public class Prova implements Serializable
 	private String turma;
 	
 	private String curso;
+
+	private int dificuldade;
+
+	private int dificuldadeP;
 	
-	private String Difuculdade;
+	private int numeroPergunta;
 	
 	@Temporal(value = TemporalType.DATE)
 	private Date dataAplicacao;
@@ -40,6 +45,25 @@ public class Prova implements Serializable
 	private List<Pergunta> perguntas = new ArrayList<Pergunta>();
 	
 	
+	
+	public int getNumeroPergunta() {
+		return numeroPergunta;
+	}
+	public void setNumeroPergunta(int numeroPergunta) {
+		this.numeroPergunta = numeroPergunta;
+	}
+	public int getDificuldade() {
+		return dificuldade;
+	}
+	public void setDificuldade(int dificuldade) {
+		this.dificuldade = dificuldade;
+	}
+	public int getDificuldadeP() {
+		return dificuldadeP;
+	}
+	public void setDificuldadeP(int dificuldadeP) {
+		this.dificuldadeP = dificuldadeP;
+	}
 	public long getCodProva() {
 		return codProva;
 	}
@@ -83,6 +107,7 @@ public class Prova implements Serializable
 	public void setPerguntas(List<Pergunta> perguntas) {
 		this.perguntas = perguntas;
 	}
+	
 	public void addPergunta(Pergunta pergunta)
 	{
 		perguntas.add(pergunta);
@@ -103,6 +128,7 @@ public class Prova implements Serializable
 	{
 		perguntas.add(verdadeiroFalso);
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

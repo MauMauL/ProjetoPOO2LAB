@@ -1,12 +1,14 @@
 package sistema.beans;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import sistema.modelos.Conteudo;
 import sistema.modelos.Disciplina;
 import sistema.modelos.Pergunta;
 import sistema.modelos.Prova;
+import sistema.service.ConteudoService;
 import sistema.service.DisciplinaService;
 import sistema.service.PerguntaService;
 import sistema.service.ProvaService;
@@ -24,24 +26,27 @@ public class ProvaManagedBean
 	private Prova prova = new Prova();
 	private Disciplina disciplina;
 	private List<Prova> provas;
+	private List<Conteudo> conteudos;
+	private List<Conteudo> conteudosSelecionados;
+	private List<Pergunta> perguntas;
 	private PerguntaService perguntaService = new PerguntaService();
 	private ProvaService provaService = new ProvaService();
 	private DisciplinaService discService = new DisciplinaService();
+	private ConteudoService conteudoService = new ConteudoService();
+	
 	
 	public void salvar() 
 	{
-
-		for(int i = 0; i < perguntaService.getPerguntas().size(); i++)
-		{
-			prova.addPergunta(perguntaService.getPerguntas().get(i));
-			perguntaService.getPerguntas().get(i).addProva(prova);
-		}
 		
+		geraPerguntas();
+		//adicionaConteudos();
+	
 		disciplina.addProva(prova);
 		prova.setDisciplina(disciplina);
 		
+	
 		prova = provaService.salvar(prova);
-
+	
 		if (provas != null)
 			provas.add(prova);
 
@@ -49,6 +54,37 @@ public class ProvaManagedBean
 		disciplina = null;
 	}
 	
+	
+	public List<Conteudo> getConteudosSelecionados() {
+		return conteudosSelecionados;
+	}
+	public void setConteudosSelecionados(List<Conteudo> conteudosSelecionados) {
+		this.conteudosSelecionados = conteudosSelecionados;
+	}
+
+	public List<Conteudo> getConteudos() 
+	{
+		if(conteudos == null)
+			conteudos = conteudoService.getConteudos();
+			
+		return conteudos;
+	}
+
+	public List<Pergunta> getPerguntas()
+	{if(perguntas == null)
+		perguntas = perguntaService.getPerguntas();
+		return perguntas;
+	}
+	public void setConteudos(List<Conteudo> conteudos) {
+		this.conteudos = conteudos;
+	}
+
+
+	public void setPerguntas(List<Pergunta> perguntas) {
+		this.perguntas = perguntas;
+	}
+
+
 	public Disciplina getDisciplina() {
 		return disciplina;
 	}
@@ -81,10 +117,6 @@ public class ProvaManagedBean
 
 		return provas;
 	}
-	public List<Pergunta> getPerguntas() {
-		return perguntaService.getPerguntas();
-	}
-
 	public void remover(Prova prova) {
 		provaService.remover(prova);
 		provas.remove(prova);
@@ -94,25 +126,43 @@ public class ProvaManagedBean
 		Prova p = ((Prova) event.getObject());
 		provaService.alterar(p);
 	}
-	public void geraProva(int np, int dp)
+	public void geraPerguntas()
 	{
-		List<Pergunta> lp = new ArrayList<Pergunta>();
-		List<Conteudo> lc = new ArrayList<Conteudo>();
-		Disciplina d;
+		int aux = 0;
+		List<Pergunta> l = perguntaService.getPerguntas();
 		
+		Collections.sort(l);
 		
-		d = prova.getDisciplina();
-		lc = prova.getDisciplina().getConteudos();
-		lc = d.getConteudos();
-		
-		for(int i = 0; i < perguntaService.getPerguntas().size(); i++)
+		for(int i = 0; i < l.size(); i++)
 		{
-			if(prova.getPerguntas().get(i).getDificuldade() <= dp)
+			if(l.get(i).getDificuldade() <=  prova.getDificuldadeP() || aux < prova.getNumeroPergunta())
 			{
-				lp.add(prova.getPerguntas().get(i));
+				prova.addPergunta(l.get(i));
+				aux++;
 			}
 		}
-		
-		
+		if(prova.getPerguntas().size() < prova.getNumeroPergunta() && l.size() >= prova.getNumeroPergunta() )
+		{
+			int a = 0;
+			
+			a = prova.getNumeroPergunta() - prova.getPerguntas().size();
+			
+			for(int i = 0; i < a; i++)
+			{
+				if(l.get(i).getDificuldade() > prova.getDificuldadeP())
+				{
+					prova.addPergunta(l.get(i));
+				}
+			}
+		}
+	}
+	public void adicionaConteudos()
+	{
+		for(int i = 0; i < conteudosSelecionados.size(); i++)
+		{
+			
+		}
 	}
 }
+
+	
