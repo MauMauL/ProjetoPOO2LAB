@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 
 import org.primefaces.event.RowEditEvent;
+import org.primefaces.model.DualListModel;
 
 import sistema.beans.datamodel.DisciplinaDataModel;
 import sistema.modelos.Conteudo;
@@ -46,7 +47,6 @@ public class DisciplinaManagedBean  implements Serializable
 		professor = null;
 
 	}
-
 	public Disciplina getDisciplinaSelecionada() {
 		return disciplinaSelecionada;
 	}

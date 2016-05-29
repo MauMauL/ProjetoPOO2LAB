@@ -142,6 +142,10 @@
 						<p:outputLabel value="#{p.nomeProva}" />
 			</p:column>
 			
+				<p:column headerText="#{msg['pages.cadastroDisciplina.prova.faculdade']}">
+						<p:outputLabel value="#{p.faculdade}" />
+			</p:column>
+			
 			<p:column headerText="#{msg['pages.cadastroDisciplina.prova.turma']}">
 						<p:outputLabel value="#{p.turma}" />
 			</p:column>
@@ -158,6 +162,7 @@
 			
 		</p:dataTable>
 	</h:form>
+	
 	</ui:define>
 </ui:composition>
 

@@ -19,7 +19,7 @@
 	    <p:panel  header="#{msg['pages.cadastroConteudo.menu']}" style="margin-bottom:10px;">
 	    <h:panelGrid columns="3">
 	     
-	     <p:outputLabel value="Nome:"/>
+	     <p:outputLabel value="#{msg['pages.cadastroConteudo.form.nomeCont']}"/>
 	     <p:inputText id="nome" value = "#{conteudoManagedBean.conteudo.nomeCont}" 
 	    required="true" />
 	    <p:message for="nome"/>

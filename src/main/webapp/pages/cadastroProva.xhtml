@@ -24,6 +24,12 @@
 	    required="true" />
 	    <p:message for="nome"/>
 	     
+	        <p:outputLabel value="#{msg['pages.cadastroProva.form.faculdade']}"/>
+	     <p:inputText id="faculdade" value = "#{provaManagedBean.prova.faculdade}" 
+	    required="true" />
+	    <p:message for="faculdade"/>
+	     
+	     
 	     <p:outputLabel value="#{msg['pages.cadastroProva.form.turma']}"/>
 	     <p:inputText id="turma" value = "#{provaManagedBean.prova.turma}" 
 	    required="true" />
@@ -60,7 +66,8 @@
       effect="fade" var="sm" style="width:191px" filter="true"
        filterMatchMode="startsWith"  validateClient="true" >
       
-       <f:selectItem itemValue="" itemLabel="#{msg['pages.cadastroProva.form.sm.disciplina']}" />
+       <f:selectItem itemValue="" 
+       itemLabel="#{msg['pages.cadastroProva.form.sm.disciplina']}" />
        
        <f:selectItems value="#{provaManagedBean.disciplinas}" var="disc" 
         itemValue="#{disc}" itemLabel="#{disc.nomeDisc}"/>
@@ -96,7 +103,7 @@
 	      	</h:panelGrid>
 	      	</p:panel>
 	      	    <p:commandButton value="#{msg['pages.comuns.form.btnSalvar']}" 
-	      	action="#{conteudoManagedBean.salvar}"
+	      	action="#{provaManagedBean.salvar}"
 	      	icon="fa fa-save" update=":formProva 
 	      	:formTableProva:tableProva"
 	      	styleClass="ui-priority-primary" validateClient="true"
@@ -124,6 +131,18 @@
 					</f:facet>
 					<f:facet name="input">
 						<p:inputText id="nome" value="#{p.nomeProva}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			
+			<p:column headerText="#{msg['pages.cadastroProva.table.faculdade']}">
+				<p:cellEditor>
+					<f:facet name="output">
+					<p:outputLabel value="#{p.faculdade}"/>
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="faculdade" value="#{p.faculdade}"
 							style="width:100%" />
 					</f:facet>
 				</p:cellEditor>
@@ -177,13 +196,7 @@
        </p:column>
 	   </p:dataTable>
 	     </h:form>
- 	
-	      
-<br/>	     
-<br/>
-<h3><h:outputLabel value="#{msg['pages.cadastroProva.gerarProva.title']}"/></h3>
-<br/>
-	   
+
 	</ui:define>
 </ui:composition>
 

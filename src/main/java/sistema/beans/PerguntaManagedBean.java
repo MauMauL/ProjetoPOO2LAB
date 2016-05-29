@@ -1,5 +1,6 @@
 package sistema.beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -19,7 +20,7 @@ import sistema.service.PerguntaService;
 
 @ManagedBean
 @ViewScoped
-public class PerguntaManagedBean
+public class PerguntaManagedBean implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	

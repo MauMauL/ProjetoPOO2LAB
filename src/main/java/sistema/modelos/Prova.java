@@ -35,6 +35,8 @@ public class Prova implements Serializable
 	
 	private int numeroPergunta;
 	
+	private String faculdade;
+	
 	@Temporal(value = TemporalType.DATE)
 	private Date dataAplicacao;
 	
@@ -44,8 +46,15 @@ public class Prova implements Serializable
 	@ManyToMany
 	private List<Pergunta> perguntas = new ArrayList<Pergunta>();
 	
+	private List<Conteudo> conteudos = new ArrayList<Conteudo>();
 	
 	
+	public String getFaculdade() {
+		return faculdade;
+	}
+	public void setFaculdade(String faculdade) {
+		this.faculdade = faculdade;
+	}
 	public int getNumeroPergunta() {
 		return numeroPergunta;
 	}
@@ -108,6 +117,12 @@ public class Prova implements Serializable
 		this.perguntas = perguntas;
 	}
 	
+	public List<Conteudo> getConteudos() {
+		return conteudos;
+	}
+	public void setConteudos(List<Conteudo> conteudos) {
+		this.conteudos = conteudos;
+	}
 	public void addPergunta(Pergunta pergunta)
 	{
 		perguntas.add(pergunta);
@@ -128,6 +143,11 @@ public class Prova implements Serializable
 	{
 		perguntas.add(verdadeiroFalso);
 	}
+	public void addConteudo(Conteudo conteudo)
+	{
+		conteudos.add(conteudo);
+	}
+	
 	
 	@Override
 	public int hashCode() {
