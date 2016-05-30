@@ -8,7 +8,10 @@
 	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
 	
 	<ui:define name="title">
-		<h:outputText value="noix somus uma empresa foda de tecnologia da informaçaum" />
+		<h:outputText value="#{msg['pages.sobre.title']}" />
+	</ui:define>
+	<ui:define name="principal">
+	     <p:outputLabel value="#{msg['pages.sobre.info']}"/>      	
 	</ui:define>
 
 </ui:composition>
