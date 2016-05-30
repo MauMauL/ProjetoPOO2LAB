@@ -13,6 +13,14 @@
 	
 	<ui:define name="principal">
 	 	 
+	 	 <h:panelGrid columns="2" cellspacing="20">
+<h:outputText styleClass="fa fa-file-text-o" />
+<p:button value="#{msg['pages.comuns.btn.prova']}" 
+styleClass="ui-priority-primary"
+href="cadastroProva.xhtml?i=1" ajax="false">
+</p:button>
+	</h:panelGrid>
+	 	 
 	<h:form id="formGeradorProva">
  	<p:panel header="#{msg['pages.geradorProva.menu']}">
  	<h:panelGrid columns="2" >
@@ -39,9 +47,11 @@
  	
  	</h:panelGrid>
  	</p:panel>
- 		<p:commandButton value="Gera Prova" id="geraPDF"
+ 	<br/>
+ 		<p:commandButton value="#{msg['pages.geradorProva.form.btn.gerarProva']}" id="geraPDF"
  		action="#{geradorPDF.gerador}" 
- 		styleClass="ui-priority-primary" ajax="false" update=":formGeradorProva"/>
+ 		styleClass="ui-priority-primary" ajax="false" 
+ 		update=":formGeradorProva"/>
  	</h:form>
  <br/>
  <br/>

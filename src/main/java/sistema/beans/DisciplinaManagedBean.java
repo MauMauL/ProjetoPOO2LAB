@@ -8,10 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
-
 import org.primefaces.event.RowEditEvent;
-import org.primefaces.model.DualListModel;
-
 import sistema.beans.datamodel.DisciplinaDataModel;
 import sistema.modelos.Conteudo;
 import sistema.modelos.Disciplina;

@@ -14,6 +14,12 @@
 
 	<ui:define name="principal">
 	 	 
+	 	  	 <h:panelGrid columns="2" cellspacing="20">
+<h:outputText styleClass="fa fa-mortar-board" />
+<p:button value="#{msg['pages.comuns.btn.professor']}" styleClass="ui-priority-primary"
+href="cadastroProfessor.xhtml?i=1" ajax="false">
+</p:button>
+</h:panelGrid>
 <h:form id="formProva">
 
 	    <p:panel  header="#{msg['pages.cadastroProva.menu']}" style="margin-bottom:10px;">
@@ -42,12 +48,14 @@
 	
 	 <p:outputLabel value="#{msg['pages.cadastroProva.form.dificuldade']}"/>
 	     <p:inputText id="dificuldade" value = "#{provaManagedBean.prova.dificuldade}" 
-	    required="true" />
+	    required="true" >  <f:validateDoubleRange minimum="1" maximum="10" />
+	    </p:inputText>
 	    <p:message for="dificuldade"/>
 	    
 	     <p:outputLabel value="#{msg['pages.cadastroProva.form.dificuldadeDaPergunta']}"/>
 	     <p:inputText id="dificuldadePergunta" value = "#{provaManagedBean.prova.dificuldadeP}" 
-	    required="true" />
+	    required="true" >  <f:validateDoubleRange minimum="1" maximum="10" /> 
+	    </p:inputText>
 	    <p:message for="dificuldadePergunta"/>
 	    
 	     <p:outputLabel value="#{msg['pages.cadastroProva.form.numeroPergunta']}"/>
@@ -59,6 +67,11 @@
 	     <p:calendar id="dataAplicacao" 
          value="#{provaManagedBean.prova.dataAplicacao}"  />
 	    <p:message for="dataAplicacao"/>
+	    
+	     <p:outputLabel value="#{msg['pages.cadastroProva.form.tempo']}"/>
+	     <p:inputText id="tempo" value = "#{provaManagedBean.prova.tempo}" 
+	    required="true" />
+	    <p:message for="tempo"/>
 	    
 	    <p:outputLabel value="#{msg['pages.cadastroProva.form.disciplina']}"  />
         <p:selectOneMenu value="#{provaManagedBean.disciplina}" 
@@ -118,13 +131,18 @@
 	     <p:growl id="growl" showDetail="true" />
 	     
 	   <p:dataTable value="#{provaManagedBean.provas}" var="p"
-	   id="tableProva" editable="true" >
+	   id="tableProva" editable="true" rows = "10" paginator="true" paginatorTemplate="{CurrentPageReport}
+	   {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+	   {RowsPerPageDropdown}" rowsPerPageTemplate="5, 10, 15"
+	   emptyMessage="#{msg['pages.cadastroProva.filterMSG']}">
 	      
-	    <p:column headerText="#{msg['pages.cadastroProva.table.codigo']}" > <!--filterBy="#{d.codigoDisc}"-->
+	    <p:column headerText="#{msg['pages.cadastroProva.table.codigo']}" 
+	    filterBy="#{p.codProva}"> 
         <p:outputLabel value="#{p.codProva}" />
       </p:column>
       
-       <p:column headerText="#{msg['pages.cadastroProva.table.nome']}">
+       <p:column headerText="#{msg['pages.cadastroProva.table.nome']}"
+       filterBy="#{p.nomeProva}">
 				<p:cellEditor>
 					<f:facet name="output">
 					<p:outputLabel value="#{p.nomeProva}"/>
@@ -136,7 +154,8 @@
 				</p:cellEditor>
 			</p:column>
 			
-			<p:column headerText="#{msg['pages.cadastroProva.table.faculdade']}">
+			<p:column headerText="#{msg['pages.cadastroProva.table.faculdade']}"
+			filterBy="#{p.faculdade}">
 				<p:cellEditor>
 					<f:facet name="output">
 					<p:outputLabel value="#{p.faculdade}"/>
@@ -148,7 +167,8 @@
 				</p:cellEditor>
 			</p:column>
       
-        <p:column headerText="#{msg['pages.cadastroProva.table.turma']}">
+        <p:column headerText="#{msg['pages.cadastroProva.table.turma']}"
+        filterBy="#{p.turma}">
 				<p:cellEditor>
 					<f:facet name="output">
 					<p:outputLabel value="#{p.turma}"/>
@@ -160,7 +180,8 @@
 				</p:cellEditor>
 			</p:column>
 			
-			     <p:column headerText="#{msg['pages.cadastroProva.table.curso']}">
+			     <p:column headerText="#{msg['pages.cadastroProva.table.curso']}"
+			     filterBy="#{p.curso}">
 				<p:cellEditor>
 					<f:facet name="output">
 					<p:outputLabel value="#{p.curso}"/>
@@ -172,7 +193,8 @@
 				</p:cellEditor>
 			</p:column>
             
-            <p:column headerText="#{msg['pages.cadastroProva.table.dataAplicacao']}">
+            <p:column headerText="#{msg['pages.cadastroProva.table.dataAplicacao']}"
+            filterBy="#{p.dataAplicacao}">
 				<p:cellEditor>
 					<f:facet name="output">
 					<p:outputLabel value="#{p.dataAplicacao}">
@@ -181,6 +203,19 @@
 					</f:facet>
 					<f:facet name="input">
 						<p:calendar id="dataAplicacao" value="#{p.dataAplicacao}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			
+<p:column headerText="#{msg['pages.cadastroProva.table.tempo']}"
+filterBy="#{p.tempo}">
+				<p:cellEditor>
+					<f:facet name="output">
+					<p:outputLabel value="#{p.tempo}"/>
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="tempo" value="#{p.tempo}"
 							style="width:100%" />
 					</f:facet>
 				</p:cellEditor>

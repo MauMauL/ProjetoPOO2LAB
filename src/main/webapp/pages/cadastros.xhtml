@@ -16,63 +16,44 @@
 
 <br/>
 
-<p:link value="Cadastro Fornecedor" href="cadastroFornecedor.xhtml?i=1">
-</p:link>
+<h:form>
+<h:panelGrid columns="2" width="400" cellspacing="20">
 
-<br/>
-<br/>
+<h:outputText styleClass="fa fa-mortar-board" />
+<p:button value="#{msg['pages.comuns.btn.professor']}" styleClass="ui-priority-primary"
+href="cadastroProfessor.xhtml?i=1" ajax="false">
+</p:button>
 
-<p:link value="Cadastro Produto" href="cadastroProduto.xhtml?i=1">
-</p:link>
+<h:outputText styleClass="fa fa-book" />
+<p:button value="#{msg['pages.comuns.btn.disciplina']}" styleClass="ui-priority-primary"
+href="cadastroDisciplina.xhtml?i=1" ajax="false">
+</p:button>
 
-<br/>
-<br/>
+<h:outputText styleClass="fa fa-check" />
+<p:button value="#{msg['pages.comuns.btn.item']}" styleClass="ui-priority-primary"
+href="cadastroItem.xhtml?i=1" ajax="false">
+</p:button>
 
-<!-- Cadastro Professor -->
-<p:link value="Cadastro Professor" href="cadastroProfessor.xhtml?i=1">
-</p:link>
+<h:outputText styleClass="fa fa-question" />
+<p:button value="#{msg['pages.comuns.btn.pergunta']}" styleClass="ui-priority-primary"
+href="cadastroPergunta.xhtml?i=1" ajax="false">
+</p:button>
 
-<br/>
-<br/>
+<h:outputText styleClass="fa fa-file-text" />
+<p:button value="#{msg['pages.comuns.btn.conteudo']}" styleClass="ui-priority-primary"
+href="cadastroConteudo.xhtml?i=1" ajax="false">
+</p:button>
 
-<!-- Cadastro Disciplina -->
-<p:link value="Cadastro Disciplina" href="cadastroDisciplina.xhtml?i=1">
-</p:link>
+<h:outputText styleClass="fa fa-file-text-o" />
+<p:button value="#{msg['pages.comuns.btn.prova']}" styleClass="ui-priority-primary"
+href="cadastroProva.xhtml?i=1" ajax="false">
+</p:button>
 
-<br/>
-<br/>
-
-<!-- Cadastro Item -->
-<p:link value="Cadastro Item" href="cadastroItem.xhtml?i=1">
-</p:link>
-
-<br/>
-<br/>
-
-<!-- Cadastro Pergunta -->
-<p:link value="Cadastro Pergunta" href="cadastroPergunta.xhtml?i=1">
-</p:link>
-
-<br/>
-<br/>
-
-<!-- Cadastro Conteudo -->
-<p:link value="Cadastro Conteudo" href="cadastroConteudo.xhtml?i=1">
-</p:link>
-
-<br/>
-<br/>
-
-<!-- Cadastro Prova -->
-<p:link value="Cadastro Prova" href="cadastroProva.xhtml?i=1">
-</p:link>
-
-
-
-
-
-    
+</h:panelGrid>
+</h:form>
 
 
 </ui:define>
+
+
 </ui:composition>

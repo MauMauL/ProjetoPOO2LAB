@@ -1,6 +1,5 @@
 package sistema.beans;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,13 +11,8 @@ import sistema.service.ConteudoService;
 import sistema.service.DisciplinaService;
 import sistema.service.PerguntaService;
 import sistema.service.ProvaService;
-
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-
-import org.primefaces.event.ReorderEvent;
 import org.primefaces.event.RowEditEvent;
 
 
@@ -135,10 +129,10 @@ public class ProvaManagedBean
 		List<Pergunta> l = perguntaService.getPerguntas();
 		
 		Collections.sort(l);
-		
+
 		for(int i = 0; i < l.size(); i++)
 		{
-			if(l.get(i).getDificuldade() <=  prova.getDificuldadeP() || aux < prova.getNumeroPergunta())
+			if(l.get(i).getDificuldade() ==  prova.getDificuldadeP())
 			{
 				prova.addPergunta(l.get(i));
 				aux++;
@@ -152,7 +146,7 @@ public class ProvaManagedBean
 			
 			for(int i = 0; i < a; i++)
 			{
-				if(l.get(i).getDificuldade() > prova.getDificuldadeP())
+				if(l.get(i).getDificuldade() < prova.getDificuldadeP())
 				{
 					prova.addPergunta(l.get(i));
 				}
@@ -166,10 +160,6 @@ public class ProvaManagedBean
 			prova.addConteudo(conteudosSelecionados.get(i));
 		}
 	}
-	public void onRowReorder(ReorderEvent event) {
-        FacesMessage msg = new FacesMessage();
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
 }
 
 	

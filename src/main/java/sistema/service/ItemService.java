@@ -16,7 +16,7 @@ public class ItemService
 		return item;
 
 	}
-	public List<Item> getItems() {
+	public List<Item> getItens() {
 		List<Item> list = itemDAO.getAll(Item.class);
 		itemDAO.closeEntityManager();
 		return list;

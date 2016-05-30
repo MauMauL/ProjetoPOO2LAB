@@ -13,6 +13,14 @@
 	
 
 	<ui:define name="principal">
+	 	
+	 	<h:panelGrid columns="2" cellspacing="20">
+<h:outputText styleClass="fa fa-check" />
+<p:button value="#{msg['pages.comuns.btn.item']}" 
+styleClass="ui-priority-primary"
+href="cadastroItem.xhtml?i=1" ajax="false">
+</p:button>
+	</h:panelGrid>
 	 	 
 <h:form id="formDisciplina">
 
@@ -69,7 +77,10 @@
 	   <p:dataTable value="#{disciplinaManagedBean.disciplinas}" var="d"
 	   id="tableDisciplina" editable="true" selectionMode="single"
 	    selection="#{disciplinaManagedBean.disciplinaSelecionada}"  
-	   rowKey="#{d.codigoDisc}">
+	   rowKey="#{d.codigoDisc}" rows = "10" paginator="true" paginatorTemplate="{CurrentPageReport}
+	   {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+	   {RowsPerPageDropdown}" rowsPerPageTemplate="5, 10, 15"
+	   emptyMessage="#{msg['pages.cadastroDisciplina.filterMSG']}">
 	 
 	 <p:ajax event="rowSelect"   update=":formTableConteudo, :formTableProva" />
            
@@ -79,11 +90,13 @@
            listener="#{disciplinaManagedBean.onRowEdit}"     
            update=":formTableConteudo:tableConteudo, :formTableProva:tableProva" />
            
-	    <p:column headerText="#{msg['pages.cadastroDisciplina.table.codigo']}" > <!--filterBy="#{d.codigoDisc}"-->
+	    <p:column headerText="#{msg['pages.cadastroDisciplina.table.codigo']}"
+	     filterBy="#{d.codigoDisc}"> 
         <p:outputLabel value="#{d.codigoDisc}" />
       </p:column>
       
-        <p:column headerText="#{msg['pages.cadastroDisciplina.table.nome']}">
+        <p:column headerText="#{msg['pages.cadastroDisciplina.table.nome']}"
+        filterBy="#{d.nomeDisc}">
 				<p:cellEditor>
 					<f:facet name="output">
 					<p:outputLabel value="#{d.nomeDisc}"/>
@@ -114,52 +127,71 @@
 	    #{disciplinaManagedBean.disciplinaSelecionada.nomeDisc}" /></h3>
 	    <br/>
 		<p:dataTable value="#{disciplinaManagedBean.conteudosDisciplina}" 
-		var="cont"	id="tableConteudo">
+		var="cont"	id="tableConteudo" rows = "10" paginator="true" paginatorTemplate="{CurrentPageReport}
+	   {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+	   {RowsPerPageDropdown}" rowsPerPageTemplate="5, 10, 15"
+	   emptyMessage="#{msg['pages.cadastroDisciplina.conteudo.filterMSG']}">
 
-			<p:column headerText="#{msg['pages.cadastroDisciplina.conteudo.codigo']}">
+			<p:column headerText="#{msg['pages.cadastroDisciplina.conteudo.codigo']}"
+			filterBy="#{cont.codigoCont}">
 				<h:outputText value="#{cont.codigoCont}" />
 			</p:column>
 
-			<p:column headerText="#{msg['pages.cadastroDisciplina.conteudo.nome']}">
+			<p:column headerText="#{msg['pages.cadastroDisciplina.conteudo.nome']}"
+			filterBy="#{cont.nomeCont}">
 						<p:outputLabel value="#{cont.nomeCont}" />
 			</p:column>
 
 		</p:dataTable>
 		</h:form>
 		<h:form id="formTableProva">
-	     
+	     	    <br/> 
 	  <h3><p:outputLabel value="#{msg['pages.cadastroDisciplina.disciplina.provas']} 
 	    #{disciplinaManagedBean.disciplinaSelecionada.nomeDisc}" /></h3>
 	    <br/>
-		<p:dataTable value="#{disciplinaManagedBean.provasDisciplina}" 
-		var="p"	id="tableProva">
 
-			<p:column headerText="#{msg['pages.cadastroDisciplina.prova.codigo']}">
+		<p:dataTable value="#{disciplinaManagedBean.provasDisciplina}" 
+		var="p"	id="tableProva" rows = "10" paginator="true" paginatorTemplate="{CurrentPageReport}
+	   {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+	   {RowsPerPageDropdown}" rowsPerPageTemplate="5, 10, 15"
+	   emptyMessage="#{msg['pages.cadastroDisciplina.prova.filterMSG']}">
+
+			<p:column headerText="#{msg['pages.cadastroDisciplina.prova.codigo']}"
+			filterBy="#{p.codProva}">
 				<h:outputText value="#{p.codProva}" />
 			</p:column>
 
-			<p:column headerText="#{msg['pages.cadastroDisciplina.prova.nome']}">
+			<p:column headerText="#{msg['pages.cadastroDisciplina.prova.nome']}"
+			filterBy="#{p.nomeProva}">
 						<p:outputLabel value="#{p.nomeProva}" />
 			</p:column>
 			
-				<p:column headerText="#{msg['pages.cadastroDisciplina.prova.faculdade']}">
+				<p:column headerText="#{msg['pages.cadastroDisciplina.prova.faculdade']}"
+				filterBy="#{p.faculdade}">
 						<p:outputLabel value="#{p.faculdade}" />
 			</p:column>
 			
-			<p:column headerText="#{msg['pages.cadastroDisciplina.prova.turma']}">
+			<p:column headerText="#{msg['pages.cadastroDisciplina.prova.turma']}"
+			filterBy="#{p.turma}">
 						<p:outputLabel value="#{p.turma}" />
 			</p:column>
 			
-			<p:column headerText="#{msg['pages.cadastroDisciplina.prova.curso']}">
+			<p:column headerText="#{msg['pages.cadastroDisciplina.prova.curso']}"
+			filterBy="#{p.curso}">
 						<p:outputLabel value="#{p.curso}" />
 			</p:column>
 			
-			<p:column headerText="#{msg['pages.cadastroDisciplina.dataAplicacao']}">
+			<p:column headerText="#{msg['pages.cadastroDisciplina.prova.dataAplicacao']}"
+			filterBy="#{p.dataAplicacao}">
 						<p:outputLabel value="#{p.dataAplicacao}" >
 						<f:convertDateTime pattern="MM/dd/yyyy" />
 						</p:outputLabel>
 			</p:column>
 			
+			<p:column headerText="#{msg['pages.cadastroDisciplina.prova.tempo']}"
+			filterBy="#{d.tempo}">
+			<p:outputLabel value="#{p.tempo}" />
+			</p:column>
 		</p:dataTable>
 	</h:form>
 	

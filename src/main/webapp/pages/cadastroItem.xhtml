@@ -13,6 +13,15 @@
 	
 
 	<ui:define name="principal">
+	
+	<h:panelGrid columns="2" cellspacing="20">
+	<h:outputText styleClass="fa fa-question" />
+<p:button value="#{msg['pages.comuns.btn.pergunta']}" 
+styleClass="ui-priority-primary"
+href="cadastroPergunta.xhtml?i=1" ajax="false">
+</p:button>
+	</h:panelGrid>
+	
 	 <h:form id="formItem">	
 	 <p:panel header="#{msg['pages.cadastroItem.menu']}">
 	 <h:panelGrid columns="3">
@@ -25,7 +34,8 @@
 	    <p:outputLabel value="#{msg['pages.cadastroItem.form.resposta']}"/>
 	      <p:selectBooleanButton id="resposta" 
 	      value="#{itemManagedBean.item.alternativaCorreta}" 
-	      onLabel="Correta" offLabel="Incorreta" 
+	      onLabel="#{msg['pages.cadastroItem.form.resposta.booleanBtn.true']}"
+	       offLabel="#{msg['pages.cadastroItem.form.resposta.booleanBtn.false']}" 
 	      onIcon="fa fa-check" 
 	      offIcon="fa fa-close" style="width:226px"
 	      required="true">
@@ -34,7 +44,7 @@
 	   
 	  </h:panelGrid>
 	 </p:panel>
-	 
+	 <br/>
 	 <p:commandButton value="#{msg['pages.comuns.form.btnSalvar']}" 
 	      action="#{itemManagedBean.salvar}"
 	      	icon="fa fa-save" update=":formItem, 
@@ -45,22 +55,27 @@
 	   
 	    <h:form id="formTableItem">
 	   
+	   <br/>
+	   
 	   <h3><h:outputLabel value="#{msg['pages.cadastroItem.table.title']}"/></h3>
 	   
 	   <br/>
 	   
 	   <p:dataTable value="#{itemManagedBean.itens}" var="i"
-	   id="tableItem" editable="true" >
+	   id="tableItem" editable="true" rows = "10" paginator="true" paginatorTemplate="{CurrentPageReport}
+	   {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+	   {RowsPerPageDropdown}" rowsPerPageTemplate="5, 10, 15"
+	   emptyMessage="#{msg['pages.cadastroItem.filterMSG']}">
 	          
-      <p:ajax event="rowEdit"     
-           listener="#{itemManagedBean.onRowEdit}"     
-           update=":formTableItem:tableItem" />
+      <p:ajax event="rowEdit" listener="#{itemManagedBean.onRowEdit}" />
            
-	    <p:column headerText="#{msg['pages.cadastroItem.table.codigoItem']}" > <!--filterBy="#{p.codigoProf}"-->
+	    <p:column headerText="#{msg['pages.cadastroItem.table.codigoItem']}" 
+	    filterBy="#{i.codigoItem}">
         <p:outputLabel value="#{i.codigoItem}" />
       </p:column>
       
-        <p:column headerText="#{msg['pages.cadastroItem.table.nomeAlternativa']}">
+        <p:column headerText="#{msg['pages.cadastroItem.table.nomeAlternativa']}"
+        filterBy="#{i.alternativa}">
 				<p:cellEditor>
 					<f:facet name="output">
 					<p:outputLabel value="#{i.alternativa}"/>
@@ -72,15 +87,17 @@
 				</p:cellEditor>
 			</p:column>
       
-      <p:column headerText="#{msg['pages.cadastroItem.table.resposta']}">
+      <p:column headerText="#{msg['pages.cadastroItem.table.resposta']}"
+      filterBy="#{i.resposta}">
 				<p:cellEditor>
 					<f:facet name="output">
 					<p:outputLabel value="#{i.alternativaCorreta}"/>
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText id="cursoMinistra" 
-						value="#{i.alternativaCorreta}"
-							style="width:100%" />
+	 <p:selectBooleanButton id="resposta" value="#{i.alternativaCorreta}" 
+	   onLabel="Correta" offLabel="Incorreta" onIcon="fa fa-check" 
+	      offIcon="fa fa-close" style="width:226px">
+        </p:selectBooleanButton>
 					</f:facet>
 				</p:cellEditor>
 			</p:column>

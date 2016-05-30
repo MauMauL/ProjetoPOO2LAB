@@ -13,6 +13,18 @@
 
 	<ui:define name="principal">
 	
+
+
+	<h:panelGrid columns="2" cellspacing="20">
+	<h:outputText styleClass="fa fa-book" />
+	<p:button value="#{msg['pages.comuns.btn.disciplina']}" 
+	styleClass="ui-priority-primary"
+	href="cadastroDisciplina.xhtml?i=1" ajax="false">
+	</p:button>
+	</h:panelGrid>
+
+
+	
 	<h:form id="formProfessor">
 	    
 	    <p:panel  header="#{msg['pages.cadastroProfessor.menu']}" style="margin-bottom:10px;">
@@ -54,7 +66,10 @@
 	   <p:dataTable value="#{professorManagedBean.professores}" var="p"
 	   id="tableProfessor" editable="true" selectionMode="single"
 	   selection="#{professorManagedBean.professorSelecionado}"  
-	   rowKey="#{p.codigoProf}">
+	   rowKey="#{p.codigoProf}" rows = "10" paginator="true" paginatorTemplate="{CurrentPageReport}
+	   {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+	   {RowsPerPageDropdown}" rowsPerPageTemplate="5, 10, 15"
+	   emptyMessage="#{msg['pages.cadastroProfessor.filterMSG']}">
 	  
 	  <p:ajax event="rowSelect"   update=":formTableDisciplina" />
            
@@ -64,11 +79,13 @@
            listener="#{professorManagedBean.onRowEdit}"     
            update=":formTableDisciplina:tableDisciplina" />
            
-	    <p:column headerText="#{msg['pages.cadastroProfessor.table.codigo']}" > <!--filterBy="#{p.codigoProf}"-->
+	    <p:column headerText="#{msg['pages.cadastroProfessor.table.codigo']}" 
+	    filterBy="#{p.codigoProf}"> 
         <p:outputLabel value="#{p.codigoProf}" />
       </p:column>
       
-        <p:column headerText="#{msg['pages.cadastroProfessor.table.nome']}">
+        <p:column headerText="#{msg['pages.cadastroProfessor.table.nome']}"
+        filterBy="#{p.nomeProf}">
 				<p:cellEditor>
 					<f:facet name="output">
 					<p:outputLabel value="#{p.nomeProf}"/>
@@ -80,7 +97,8 @@
 				</p:cellEditor>
 			</p:column>
       
-      <p:column headerText="#{msg['pages.cadastroProfessor.table.cursoMinistra']}">
+      <p:column headerText="#{msg['pages.cadastroProfessor.table.cursoMinistra']}"
+      filterBy="#{p.cursoMinistra}">
 				<p:cellEditor>
 					<f:facet name="output">
 					<p:outputLabel value="#{p.cursoMinistra}"/>
@@ -110,13 +128,18 @@
 	    #{professorManagedBean.professorSelecionado.nomeProf}" /></h3>
 	    <br/>
 		<p:dataTable value="#{professorManagedBean.disciplinasProfessor}" 
-		var="disc"	id="tableDisciplina">
+		var="disc"	id="tableDisciplina" rows = "10" paginator="true" paginatorTemplate="{CurrentPageReport}
+	   {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+	   {RowsPerPageDropdown}" rowsPerPageTemplate="5, 10, 15"
+	   emptyMessage="#{msg['pages.cadastroProfessor.disciplina.filterMSG']}">
 
-			<p:column headerText="#{msg['pages.cadastroProfessor.disciplina.codigo']}">
+			<p:column headerText="#{msg['pages.cadastroProfessor.disciplina.codigo']}"
+			filterBy="#{disc.codigoDisc}">
 				<h:outputText value="#{disc.codigoDisc}" />
 			</p:column>
 
-			<p:column headerText="#{msg['pages.cadastroProfessor.disciplina.nome']}">
+			<p:column headerText="#{msg['pages.cadastroProfessor.disciplina.nome']}"
+			filterBy="#{disc.nomeDisc}">
 						<p:outputLabel value="#{disc.nomeDisc}" />
 			</p:column>
 

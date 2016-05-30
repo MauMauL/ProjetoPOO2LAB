@@ -8,11 +8,9 @@ import sistema.generic.MultiplaEscolhaDAO;
 import sistema.generic.PerguntaDAO;
 import sistema.generic.VerdadeiroFalsoDAO;
 import sistema.modelos.Alternativa;
-import sistema.modelos.Conteudo;
 import sistema.modelos.Dissertativa;
 import sistema.modelos.MultiplaEscolha;
 import sistema.modelos.Pergunta;
-import sistema.modelos.Prova;
 import sistema.modelos.VerdadeiroFalso;
 
 public class PerguntaService 

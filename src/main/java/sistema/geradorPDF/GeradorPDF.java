@@ -66,9 +66,13 @@ public class GeradorPDF
           
            for(int i = 0; i < prova.getConteudos().size(); i++)
            {
-        	   if(prova.getConteudos().size() == 1)
+        	  /* if(prova.getConteudos().size() == 1)
         	   {
         		   c = c + prova.getConteudos().get(i).getNomeCont();
+        	   }*/
+        	   if(i == prova.getConteudos().size() - 1)
+        	   {
+        		   c = c + prova.getConteudos().get(i).getNomeCont() + "";
         	   }
         	   else
         	   {
@@ -79,11 +83,13 @@ public class GeradorPDF
            document.add(new Paragraph("Curso: " + prova.getCurso()));
            document.add(new Paragraph("Turma: " + prova.getTurma()));
            document.add(new Paragraph("Data de Aplicação: " + prova.getDataAplicacao().getDate()
-        		   +"/"+prova.getDataAplicacao().getMonth()+"/"+prova.getDataAplicacao().getYear()));
+        		   +"/"+prova.getDataAplicacao().getMonth()+"/"+"16"));
+           document.add(new Paragraph("Tempo Estimado: " + prova.getTempo()+" minutos"));
            document.add(new Paragraph("Dificuldade da prova: " + prova.getDificuldade()));
            document.add(new Paragraph("Disciplina: " + prova.getDisciplina().getNomeDisc()));
            document.add(new Paragraph("Conteudos: " + c));
            document.add(new Paragraph("Professor: " + prova.getDisciplina().getProfessor().getNomeProf()));
+           document.add(new Paragraph("Quantidade de Questões: " + prova.getPerguntas().size()));
           
            
            document.add(Chunk.NEWLINE);
@@ -93,12 +99,13 @@ public class GeradorPDF
         	   document.add(new Paragraph(""+(i + 1)+") " + 
            prova.getPerguntas().get(i).getEnunciado()));
         	   document.add(new Paragraph(""+"("+ "Tempo Estimado: "+ 
-           prova.getPerguntas().get(i).getTempoEstimado() +", Dificulade: " + 
+           prova.getPerguntas().get(i).getTempoEstimado() +" minutos, Dificulade: " + 
            prova.getPerguntas().get(i).getDificuldade()+")"));
         	   document.add( Chunk.NEWLINE );
         	   
         	   if(prova.getPerguntas().get(i) instanceof Alternativa)
         	   {
+        		   alternativaAscii = 'a';
         		  Alternativa a = (Alternativa)prova.getPerguntas().get(i);
         		   for(int j = 0; j < a.getItens().size(); j++)
         		   {
@@ -112,6 +119,7 @@ public class GeradorPDF
         	   }
         	   else if(prova.getPerguntas().get(i) instanceof MultiplaEscolha)
         	   {
+        		   alternativaAscii = 'a';
         		   MultiplaEscolha m = (MultiplaEscolha)prova.getPerguntas().get(i);
         		   for(int j = 0; j < m.getItens().size(); j++)
         		   {
@@ -124,6 +132,7 @@ public class GeradorPDF
         	   }
         	   else if(prova.getPerguntas().get(i) instanceof VerdadeiroFalso)
         	   {
+        		   alternativaAscii = 'a'; 
         		   VerdadeiroFalso v = (VerdadeiroFalso)prova.getPerguntas().get(i);
         		   for(int j = 0; j < v.getItens().size(); j++)
         		   {

@@ -37,6 +37,8 @@ public class Prova implements Serializable
 	
 	private String faculdade;
 	
+	private int tempo;
+	
 	@Temporal(value = TemporalType.DATE)
 	private Date dataAplicacao;
 	
@@ -48,7 +50,12 @@ public class Prova implements Serializable
 	
 	private List<Conteudo> conteudos = new ArrayList<Conteudo>();
 	
-	
+	public int getTempo() {
+		return tempo;
+	}
+	public void setTempo(int tempo) {
+		this.tempo = tempo;
+	}
 	public String getFaculdade() {
 		return faculdade;
 	}

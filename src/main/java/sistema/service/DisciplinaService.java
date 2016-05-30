@@ -1,8 +1,5 @@
 package sistema.service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.util.List;
 import sistema.generic.DisciplinaDAO;
 import sistema.modelos.Conteudo;

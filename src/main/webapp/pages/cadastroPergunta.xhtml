@@ -14,10 +14,16 @@
 
 	<ui:define name="principal">
 	 	 
-	 	 
+	 <h:panelGrid columns="2" cellspacing="20">
+<h:outputText styleClass="fa fa-file-text" />
+<p:button value="#{msg['pages.comuns.btn.conteudo']}" 
+styleClass="ui-priority-primary"
+href="cadastroConteudo.xhtml?i=1" ajax="false">
+</p:button>
+	</h:panelGrid>
+		 
 <h3> <p:outputLabel value="#{msg['pages.cadastroPergunta.menu']}" /></h3>
-<br/>
-<br/>
+
 
 	 <h:form id="formPerguntaAlternativa">
 	    
@@ -34,7 +40,7 @@
 	 <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.dificuldade']}"/>
 	     <p:inputText id="dificuldadeA" 
 	     value = "#{perguntaManagedBean.alternativa.dificuldade}" 
-	    required="true" />
+	    required="true" >  <f:validateDoubleRange minimum="1" maximum="10" /> </p:inputText>
 	    <p:message for="dificuldadeA"/>
 	    
 	     <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.tempoEstimado']}"/>
@@ -48,9 +54,30 @@
          value="#{perguntaManagedBean.alternativa.dataCriacao}" />
         <p:message for="dataCriacaoA"/>
         
+        <p:outputLabel 
+        value="#{msg['pages.cadastroPergunta.form.pergunta.itens']}" />     
+          <p:selectManyMenu id="itensA" 
+        value="#{perguntaManagedBean.itensSelecionados}" 
+        converter="converterItem"
+        var="it" filter="true" filterMatchMode="contains" 
+        showCheckbox="true" panelStyle="width:180px">
+  		 <f:selectItems value="#{perguntaManagedBean.itens}" 
+  		  style="width:191px" var="item" 
+  		 itemLabel="#{item.alternativa}" itemValue="#{item}" />
+            <p:column>
+                <h:outputText style="width:10%"
+                styleClass="fa fa-check" />
+            </p:column>
+ 
+            <p:column>
+                <h:outputText value="#{it.alternativa}" />
+            </p:column>
+        </p:selectManyMenu>
+        <p:message for="itensA"/>
+        
 	      </h:panelGrid>
 	      </p:panel>
-	          <p:commandButton value="#{msg['pages.comuns.form.btnSalvar']}" 
+	    <p:commandButton value="#{msg['pages.comuns.form.btnSalvar']}" 
 	      action="#{perguntaManagedBean.salvarAlternativa}"
 	      	icon="fa fa-save" update=":formPerguntaAlternativa 
 	      	:formTablePergunta:tablePergunta"
@@ -58,6 +85,7 @@
 	      	/>
 	   </h:form>
 	   
+	   <br/>
 	   <br/>
 	   
 	    <h:form id="formDissertativa">
@@ -75,7 +103,7 @@
 	 <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.dificuldade']}"/>
 	     <p:inputText id="dificuldadeD" 
 	     value = "#{perguntaManagedBean.dissertativa.dificuldade}" 
-	    required="true" />
+	    required="true" > <f:validateDoubleRange minimum="1" maximum="10" /> </p:inputText>
 	    <p:message for="dificuldadeD"/>
 	    
 	     <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.tempoEstimado']}"/>
@@ -83,6 +111,12 @@
 	     value = "#{perguntaManagedBean.dissertativa.tempoEstimado}" 
 	    required="true" />
 	    <p:message for="tempoEd"/>
+	    
+	      <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.resposta']}"/>
+	     <p:inputText id="resposta" 
+	     value = "#{perguntaManagedBean.dissertativa.resposta}" 
+	    required="true" />
+	    <p:message for="resposta"/>
 	    
 		 <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.dataCriacao']}" />
         <p:calendar id="dataCriacaoD"
@@ -117,7 +151,7 @@
 	 <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.dificuldade']}"/>
 	     <p:inputText id="dificuldadeM" 
 	     value = "#{perguntaManagedBean.multiplaEscolha.dificuldade}" 
-	    required="true" />
+	    required="true" > <f:validateDoubleRange minimum="1" maximum="10" /> </p:inputText>
 	    <p:message for="dificuldadeM"/>
 	    
 	     <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.tempoEstimado']}"/>
@@ -130,6 +164,26 @@
         <p:calendar id="dataCriacaoM"
          value="#{perguntaManagedBean.multiplaEscolha.dataCriacao}" />
         <p:message for="dataCriacaoM"/>
+        
+      <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.itens']}" />
+         <p:selectManyMenu id="itensM" 
+        value="#{perguntaManagedBean.itensSelecionados}" 
+        converter="converterItem"
+        var="it" filter="true" filterMatchMode="contains" 
+        showCheckbox="true" panelStyle="width:180px">
+  		 <f:selectItems value="#{perguntaManagedBean.itens}" 
+  		  style="width:191px" var="item" 
+  		 itemLabel="#{item.alternativa}" itemValue="#{item}" />
+            <p:column>
+                <h:outputText style="width:10%"
+                styleClass="fa fa-check" />
+            </p:column>
+ 
+            <p:column>
+                <h:outputText value="#{it.alternativa}" />
+            </p:column>
+        </p:selectManyMenu>
+        <p:message for="itensM"/>
         
 	      </h:panelGrid>
 	      </p:panel>
@@ -159,7 +213,7 @@
 	 <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.dificuldade']}"/>
 	     <p:inputText id="dificuldadeV" 
 	     value = "#{perguntaManagedBean.verdadeiroFalso.dificuldade}" 
-	    required="true" />
+	    required="true" > <f:validateDoubleRange minimum="1" maximum="10" /> </p:inputText>
 	    <p:message for="dificuldadeV"/>
 	    
 	     <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.tempoEstimado']}"/>
@@ -173,6 +227,26 @@
          value="#{perguntaManagedBean.verdadeiroFalso.dataCriacao}" />
         <p:message for="dataCriacaoV"/>
         
+         <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.itens']}" />
+       <p:selectManyMenu id="itensV" 
+        value="#{perguntaManagedBean.itensSelecionados}" 
+        converter="converterItem"
+        var="it" filter="true" filterMatchMode="contains" 
+        showCheckbox="true" panelStyle="width:180px">
+  		 <f:selectItems value="#{perguntaManagedBean.itens}" 
+  		  style="width:191px" var="item" 
+  		 itemLabel="#{item.alternativa}" itemValue="#{item}" />
+            <p:column>
+                <h:outputText style="width:10%"
+                styleClass="fa fa-check" />
+            </p:column>
+ 
+            <p:column>
+                <h:outputText value="#{it.alternativa}" />
+            </p:column>
+        </p:selectManyMenu>
+        <p:message for="itensV"/>
+        
 	      </h:panelGrid>
 	      </p:panel>
 	          <p:commandButton value="#{msg['pages.comuns.form.btnSalvar']}" 
@@ -184,31 +258,35 @@
 	   </h:form>
 	   
 	   <br/>
-	   <br/>
 	   <h3><h:outputLabel value="#{msg['pages.cadastroPergunta.table.title']}" /></h3>
-	  <br/>
 	  <br/>
 	   <h:form id="formTablePergunta">
 	   <p:dataTable value="#{perguntaManagedBean.perguntas}" var="p"
-	   id="tablePergunta" editable="true">
+	   id="tablePergunta" editable="true" rows = "10" paginator="true" paginatorTemplate="{CurrentPageReport}
+	   {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+	   {RowsPerPageDropdown}" rowsPerPageTemplate="5, 10, 15"
+	   emptyMessage="#{msg['pages.cadastroPergunta.filterMSG']}">
 	 
-	    <p:column headerText="#{msg['pages.cadastroPergunta.table.codigo']}" > <!--filterBy="#{d.codigoDisc}"-->
+	    <p:column headerText="#{msg['pages.cadastroPergunta.table.codigo']}" 
+	    filterBy="#{p.codPer}"> 
         <p:outputLabel value="#{p.codPer}" />
       </p:column>
       
-        <p:column headerText="#{msg['pages.cadastroPergunta.table.enunciado']}">
+        <p:column headerText="#{msg['pages.cadastroPergunta.table.enunciado']}"
+        filterBy="#{p.enunciado}">
 				<p:cellEditor>
 					<f:facet name="output">
 					<p:outputLabel value="#{p.enunciado}"/>
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText id="codPer" value="#{p.enunciado}"
+						<p:inputText id="enunciado" value="#{p.enunciado}"
 							style="width:100%" />
 					</f:facet>
 				</p:cellEditor>
 			</p:column>
 			
-			<p:column headerText="#{msg['pages.cadastroPergunta.table.dificuldade']}">
+			<p:column headerText="#{msg['pages.cadastroPergunta.table.dificuldade']}"
+			filterBy="#{p.dificuldade}">
 				<p:cellEditor>
 					<f:facet name="output">
 					<p:outputLabel value="#{p.dificuldade}"/>
@@ -220,7 +298,8 @@
 				</p:cellEditor>
 			</p:column>
          
-         <p:column headerText="#{msg['pages.cadastroPergunta.table.tempoEstimado']}">
+         <p:column headerText="#{msg['pages.cadastroPergunta.table.tempoEstimado']}"
+         filterBy="#{p.tempoEstimado}">
 				<p:cellEditor>
 					<f:facet name="output">
 					<p:outputLabel value="#{p.tempoEstimado}"/>
@@ -232,7 +311,8 @@
 				</p:cellEditor>
 			</p:column>
 			
-			 <p:column headerText="#{msg['pages.cadastroPergunta.table.dataCriacao']}">
+			 <p:column headerText="#{msg['pages.cadastroPergunta.table.dataCriacao']}"
+			 filterBy="#{p.dataCriacao}">
 				<p:cellEditor>
 					<f:facet name="output">
 					<p:outputLabel value="#{p.dataCriacao}">
@@ -246,7 +326,8 @@
 				</p:cellEditor>
 			</p:column>
 			
-			<p:column headerText="#{msg['pages.cadastroPergunta.table.numeroPerguntas']}" > <!--filterBy="#{d.codigoDisc}"-->
+			<p:column headerText="#{msg['pages.cadastroPergunta.table.numeroPerguntas']}" 
+			filterBy="#{p.numeroPerguntas}">
         <p:outputLabel value="#{p.numeroPerguntas}" />
       </p:column>
          

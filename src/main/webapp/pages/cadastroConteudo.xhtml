@@ -14,6 +14,13 @@
 
 	<ui:define name="principal">
 	 	 
+	 	 <h:panelGrid columns="2" cellspacing="20">
+	<h:outputText styleClass="fa fa-file-text-o" />
+<p:button value="#{msg['pages.comuns.btn.prova']}" styleClass="ui-priority-primary"
+href="cadastroProva.xhtml?i=1" ajax="false">
+</p:button>
+	</h:panelGrid>
+	 	 
 	   <h:form id="formConteudo">
 	    
 	    <p:panel  header="#{msg['pages.cadastroConteudo.menu']}" style="margin-bottom:10px;">
@@ -76,18 +83,28 @@
 	   </h:form>
 	   
 	   <br/>
-	   <br/>
+	
 	   
 	<h3><h:outputLabel value="#{msg['pages.cadastroConteudo.table.title']}"/></h3>
+	      <br/>
 	   <h:form id="formTableConteudo">
-	   <p:dataTable value="#{conteudoManagedBean.conteudos}" var="c"
-	   id="tableConteudo" editable="true">
-	 
-	    <p:column headerText="#{msg['pages.cadastroConteudo.table.codigo']}" > <!--filterBy="#{d.codigoDisc}"-->
+	   
+	   <p:dataTable value="#{conteudoManagedBean.conteudos}" var="c" draggableRows="true"
+	   id="tableConteudo" editable="true"
+	   rows = "10" paginator="true" paginatorTemplate="{CurrentPageReport}
+	   {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+	   {RowsPerPageDropdown}" rowsPerPageTemplate="5, 10, 15"
+	   emptyMessage="#{msg['pages.cadastroConteudo.filterMSG']}">
+	   
+	 <p:ajax event="rowReorder" listener="#{conteudoManagedBean.onRowReorder}" 
+	 update=":formTableConteudo" />
+	    <p:column headerText="#{msg['pages.cadastroConteudo.table.codigo']}" 
+	    filterBy="#{c.codigoCont}"> 
         <p:outputLabel value="#{c.codigoCont}" />
       </p:column>
       
-        <p:column headerText="#{msg['pages.cadastroConteudo.table.nome']}">
+        <p:column headerText="#{msg['pages.cadastroConteudo.table.nome']}"
+        filterBy="#{c.nomeCont}">
 				<p:cellEditor>
 					<f:facet name="output">
 					<p:outputLabel value="#{c.nomeCont}"/>

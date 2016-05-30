@@ -6,6 +6,8 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.primefaces.event.RowEditEvent;
+
 import sistema.modelos.Item;
 import sistema.service.ItemService;
 
@@ -31,7 +33,7 @@ public class ItemManagedBean implements Serializable
 		
 		item = new Item();
 	}
-	public void remover()
+	public void remover(Item item)
 	{
 		itemService.remover(item);
 		itens.remove(item);
@@ -46,7 +48,7 @@ public class ItemManagedBean implements Serializable
 	public List<Item> getItens() {
 		if(itens == null)
 		{
-			itemService.getItems();
+			itens = itemService.getItens();
 		}
 		
 			return itens;
@@ -54,5 +56,11 @@ public class ItemManagedBean implements Serializable
 	public void setItens(List<Item> itens) {
 		this.itens = itens;
 	}
+	public void onRowEdit(RowEditEvent event) {
+
+		Item i = ((Item) event.getObject());
+		itemService.alterar(i);
+	}
+
 	
 }
