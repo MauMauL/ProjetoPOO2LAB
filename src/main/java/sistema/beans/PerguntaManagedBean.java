@@ -33,10 +33,10 @@ public class PerguntaManagedBean implements Serializable
 	private ItemService itemService = new ItemService();
 	private List<Item> itensSelecionados;
 	private List<Item> itens;
-	private UploadedFile file;
-	private String nomeFile;
+	//private UploadedFile file;
+	//private String nomeFile;
    
-	public void salvarAlternativa(FileUploadEvent e) 
+	public void salvarAlternativa() 
 	{	
 		int nPergunta = 0;
 		
@@ -45,7 +45,7 @@ public class PerguntaManagedBean implements Serializable
 		alternativa.setNumeroPerguntas(nPergunta);
 		adicionaItensA();
 		
-		pegaUrlA();
+		//pegaUrlA();
 		
 		perguntaService.salvarAlternativa(alternativa);
 	
@@ -64,7 +64,7 @@ public class PerguntaManagedBean implements Serializable
 		nPergunta += 1;
 		
 		dissertativa.setNumeroPerguntas(nPergunta);
-		pegaUrlD();
+		//pegaUrlD();
 		perguntaService.salvarDissertativa(dissertativa);
 		
 		if(perguntas != null)
@@ -85,7 +85,7 @@ public class PerguntaManagedBean implements Serializable
 		multiplaEscolha.setNumeroPerguntas(nPergunta);
 		
 		adicionaItensM();
-		pegaUrlM();
+		//pegaUrlM();
 		perguntaService.salvarMultiplaEscolha(multiplaEscolha);
 		
 		if(perguntas != null)
@@ -103,7 +103,7 @@ public class PerguntaManagedBean implements Serializable
 		nPergunta += 1;
 		
 		verdadeiroFalso.setNumeroPerguntas(nPergunta);
-		pegaUrlV();
+		//pegaUrlV();
 		adicionaItensV();
 		
 		perguntaService.salvarVerdadeiroFalso(verdadeiroFalso);
@@ -136,7 +136,7 @@ public class PerguntaManagedBean implements Serializable
 			verdadeiroFalso.addItens(itensSelecionados.get(i));
 		}
 	}
-	public void pegaUrlA()
+	/*public void pegaUrlA()
 	{
 		alternativa.setImagem(nomeFile);
 	}
@@ -171,7 +171,7 @@ public class PerguntaManagedBean implements Serializable
 	}
 	public void setFile(UploadedFile file) {
 		this.file = file;
-	}
+	}*/
 	public List<Item> getItens() {
 		if(itens == null)
 		{
