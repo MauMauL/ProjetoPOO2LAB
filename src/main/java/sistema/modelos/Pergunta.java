@@ -18,8 +18,8 @@ import javax.persistence.TemporalType;
 import javax.persistence.JoinColumn;
 
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-public abstract class Pergunta implements Serializable, Comparable
+@Inheritance(strategy=InheritanceType.JOINED)
+public abstract class Pergunta implements Serializable, Comparable<Pergunta>
 {
 	
 	private static final long serialVersionUID = 1L;
@@ -35,24 +35,20 @@ public abstract class Pergunta implements Serializable, Comparable
 	
 	private String enunciado;
 	
-	private int numeroPerguntas;
-	
 	@ManyToMany(mappedBy="perguntas")
 	@JoinTable( name="TblPerguntaProva",joinColumns = {@JoinColumn(name ="c_codPergunta")},
-    		inverseJoinColumns = {@JoinColumn(name ="c_codProva")})
+	inverseJoinColumns = {@JoinColumn(name ="c_codProva")})
 	private List<Prova> provas = new ArrayList<Prova>();
 	
 	@ManyToMany(mappedBy="perguntas")
 	@JoinTable( name="TblPerguntaConteudo",joinColumns = {@JoinColumn(name ="c_codPergunta")},
 	inverseJoinColumns = {@JoinColumn(name ="c_codCont")})
 	private List<Conteudo> conteudos = new ArrayList<Conteudo>();
-	
-	private String imagem;
-	
+
 	public long getCodPer() {
 		return codPer;
 	}
-	public void setCodPer(int codPer) {
+	public void setCodPer(long codPer) {
 		this.codPer = codPer;
 	}
 	public int getDificuldade() {
@@ -80,24 +76,11 @@ public abstract class Pergunta implements Serializable, Comparable
 	public void setEnunciado(String enunciado) {
 		this.enunciado = enunciado;
 	}
-	
-	public int getNumeroPerguntas() {
-		return numeroPerguntas;
-	}
-	public void setNumeroPerguntas(int numeroPerguntas) {
-		this.numeroPerguntas = numeroPerguntas;
-	}
 	public List<Conteudo> getConteudos() {
 		return conteudos;
 	}
 	public void setConteudos(List<Conteudo> conteudos) {
 		this.conteudos = conteudos;
-	}
-	public String getImagem() {
-		return imagem;
-	}
-	public void setImagem(String imagem) {
-		this.imagem = imagem;
 	}
 	public List<Prova> getProvas() {
 		return provas;
@@ -114,19 +97,17 @@ public abstract class Pergunta implements Serializable, Comparable
 		conteudos.add(conteudo);
 	}
 	@Override
-	public int compareTo(Object obj) 
-	{
-		int ret = 0;
-    	
-		if(dificuldade > ((Pergunta)obj).getDificuldade())
+	public int compareTo(Pergunta p) 
+	{	
+		if(this.dificuldade > p.getDificuldade())
 		{
-			ret = 1;
+			return 1;
 		}
-		else if(dificuldade < ((Pergunta)obj).getDificuldade())
+		else if(this.dificuldade < p.getDificuldade())
 		{
-			ret = -1;
+			return -1;
 		}
-		return ret;
+		return 0;
 	}
 	@Override
 	public int hashCode() {

@@ -31,7 +31,7 @@ private DisciplinaService servico = new DisciplinaService();
 		
 		for(Disciplina d: servico.getDisciplinas())
 		   if(Integer.parseInt(rowKey) ==  d.getCodigoDisc())
-			   return d;
+			   return servico.pesquisar(d);
 		
 		return null;
 	}

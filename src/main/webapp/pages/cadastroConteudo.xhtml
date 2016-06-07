@@ -16,7 +16,8 @@
 	 	 
 	 	 <h:panelGrid columns="2" cellspacing="20">
 	<h:outputText styleClass="fa fa-file-text-o" />
-<p:button value="#{msg['pages.comuns.btn.prova']}" styleClass="ui-priority-primary"
+<p:button value="#{msg['pages.comuns.btn.prova']}" 
+styleClass="ui-priority-primary"
 href="cadastroProva.xhtml?i=1" ajax="false">
 </p:button>
 	</h:panelGrid>
@@ -35,7 +36,7 @@ href="cadastroProva.xhtml?i=1" ajax="false">
         <p:selectOneMenu id="sm" value="#{conteudoManagedBean.disciplina}" 
         converter="converterDisciplina" panelStyle="width:180px"
       effect="fade" var="sm" style="width:191px" filter="true"
-       filterMatchMode="startsWith">
+       filterMatchMode="startsWith" required="true" >
        
        <f:selectItem itemValue="" 
        itemLabel="#{msg['pages.cadastroConteudo.form.sm.disciplina']}" />
@@ -54,7 +55,7 @@ href="cadastroProva.xhtml?i=1" ajax="false">
 		<p:message for="sm"/>
 
 	<p:outputLabel value="#{msg['pages.cadastroConteudo.form.perguntas']}" />
-        <p:selectManyMenu id="perguntas" 
+        <p:selectManyMenu id="perguntas" required="true"
         value="#{conteudoManagedBean.perguntasSelecionadas}" 
         converter="converterPergunta"
         var="sp" filter="true" filterMatchMode="contains" 
@@ -89,15 +90,13 @@ href="cadastroProva.xhtml?i=1" ajax="false">
 	      <br/>
 	   <h:form id="formTableConteudo">
 	   
-	   <p:dataTable value="#{conteudoManagedBean.conteudos}" var="c" draggableRows="true"
+	   <p:dataTable value="#{conteudoManagedBean.conteudos}" var="c"
 	   id="tableConteudo" editable="true"
 	   rows = "10" paginator="true" paginatorTemplate="{CurrentPageReport}
 	   {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
 	   {RowsPerPageDropdown}" rowsPerPageTemplate="5, 10, 15"
-	   emptyMessage="#{msg['pages.cadastroConteudo.filterMSG']}">
+	   emptyMessage="#{msg['pages.cadastroConteudo.filterMSG']}" >
 	   
-	 <p:ajax event="rowReorder" listener="#{conteudoManagedBean.onRowReorder}" 
-	 update=":formTableConteudo" />
 	    <p:column headerText="#{msg['pages.cadastroConteudo.table.codigo']}" 
 	    filterBy="#{c.codigoCont}"> 
         <p:outputLabel value="#{c.codigoCont}" />

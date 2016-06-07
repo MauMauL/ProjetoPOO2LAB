@@ -46,19 +46,19 @@ href="cadastroConteudo.xhtml?i=1" ajax="false">
 	     <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.tempoEstimado']}"/>
 	     <p:inputText id="tempoEa" 
 	     value = "#{perguntaManagedBean.alternativa.tempoEstimado}" 
-	    required="true" />
+	    required="true" > <f:validateDoubleRange minimum="1" /> </p:inputText>
 	    <p:message for="tempoEa"/>
 	    
 		 <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.dataCriacao']}" />
         <p:calendar id="dataCriacaoA" 
-         value="#{perguntaManagedBean.alternativa.dataCriacao}" />
+         value="#{perguntaManagedBean.alternativa.dataCriacao}" required="true"/>
         <p:message for="dataCriacaoA"/>
         
         <p:outputLabel 
         value="#{msg['pages.cadastroPergunta.form.pergunta.itens']}" />     
           <p:selectManyMenu id="itensA" 
         value="#{perguntaManagedBean.itensSelecionados}" 
-        converter="converterItem"
+        converter="converterItem" required="true"
         var="it" filter="true" filterMatchMode="contains" 
         showCheckbox="true" panelStyle="width:180px">
   		 <f:selectItems value="#{perguntaManagedBean.itens}" 
@@ -80,7 +80,7 @@ href="cadastroConteudo.xhtml?i=1" ajax="false">
 	    <p:commandButton value="#{msg['pages.comuns.form.btnSalvar']}" 
 	      action="#{perguntaManagedBean.salvarAlternativa}"
 	      	icon="fa fa-save" update=":formPerguntaAlternativa 
-	      	:formTablePergunta:tablePergunta"
+	      	:formTablePergunta:tablePergunta, :formTableDissertativa:tableDissertativa"
 	      	styleClass="ui-priority-primary" validateClient="true"
 	      	/>
 	   </h:form>
@@ -109,7 +109,7 @@ href="cadastroConteudo.xhtml?i=1" ajax="false">
 	     <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.tempoEstimado']}"/>
 	     <p:inputText id="tempoEd" 
 	     value = "#{perguntaManagedBean.dissertativa.tempoEstimado}" 
-	    required="true" />
+	    required="true" > <f:validateDoubleRange minimum="1" /> </p:inputText>
 	    <p:message for="tempoEd"/>
 	    
 	      <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.resposta']}"/>
@@ -120,7 +120,7 @@ href="cadastroConteudo.xhtml?i=1" ajax="false">
 	    
 		 <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.dataCriacao']}" />
         <p:calendar id="dataCriacaoD"
-         value="#{perguntaManagedBean.dissertativa.dataCriacao}" />
+         value="#{perguntaManagedBean.dissertativa.dataCriacao}" required="true" />
         <p:message for="dataCriacaoD"/>
         
 	      </h:panelGrid>
@@ -128,7 +128,7 @@ href="cadastroConteudo.xhtml?i=1" ajax="false">
 	          <p:commandButton value="#{msg['pages.comuns.form.btnSalvar']}" 
 	      action="#{perguntaManagedBean.salvarDissertativa}"
 	      	icon="fa fa-save" update=":formDissertativa 
-	      	:formTablePergunta:tablePergunta"
+	      	:formTablePergunta:tablePergunta, :formTableDissertativa:tableDissertativa"
 	      	styleClass="ui-priority-primary" validateClient="true"
 	      	/>
 	   </h:form>
@@ -157,18 +157,18 @@ href="cadastroConteudo.xhtml?i=1" ajax="false">
 	     <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.tempoEstimado']}"/>
 	     <p:inputText id="tempoEm" 
 	     value = "#{perguntaManagedBean.multiplaEscolha.tempoEstimado}" 
-	    required="true" />
+	    required="true" > <f:validateDoubleRange minimum="1" /> </p:inputText>
 	    <p:message for="tempoEm"/>
 	    
 		 <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.dataCriacao']}" />
         <p:calendar id="dataCriacaoM"
-         value="#{perguntaManagedBean.multiplaEscolha.dataCriacao}" />
+         value="#{perguntaManagedBean.multiplaEscolha.dataCriacao}" required="true"/>
         <p:message for="dataCriacaoM"/>
         
       <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.itens']}" />
          <p:selectManyMenu id="itensM" 
         value="#{perguntaManagedBean.itensSelecionados}" 
-        converter="converterItem"
+        converter="converterItem" required="true"
         var="it" filter="true" filterMatchMode="contains" 
         showCheckbox="true" panelStyle="width:180px">
   		 <f:selectItems value="#{perguntaManagedBean.itens}" 
@@ -190,7 +190,7 @@ href="cadastroConteudo.xhtml?i=1" ajax="false">
 	          <p:commandButton value="#{msg['pages.comuns.form.btnSalvar']}" 
 	      action="#{perguntaManagedBean.salvarMultiplaEscolha}"
 	      	icon="fa fa-save" update=":formMultiplaEscolha 
-	      	:formTablePergunta:tablePergunta"
+	      	:formTablePergunta:tablePergunta, :formTableDissertativa:tableDissertativa"
 	      	styleClass="ui-priority-primary" validateClient="true"
 	      	/>
 	   </h:form>
@@ -219,18 +219,18 @@ href="cadastroConteudo.xhtml?i=1" ajax="false">
 	     <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.tempoEstimado']}"/>
 	     <p:inputText id="tempoV" 
 	     value = "#{perguntaManagedBean.verdadeiroFalso.tempoEstimado}" 
-	    required="true" />
+	    required="true" > <f:validateDoubleRange minimum="1" /> </p:inputText>
 	    <p:message for="tempoV"/>
 	    
 		 <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.dataCriacao']}" />
         <p:calendar id="dataCriacaoV"
-         value="#{perguntaManagedBean.verdadeiroFalso.dataCriacao}" />
+         value="#{perguntaManagedBean.verdadeiroFalso.dataCriacao}" required="true"/>
         <p:message for="dataCriacaoV"/>
         
          <p:outputLabel value="#{msg['pages.cadastroPergunta.form.pergunta.itens']}" />
        <p:selectManyMenu id="itensV" 
         value="#{perguntaManagedBean.itensSelecionados}" 
-        converter="converterItem"
+        converter="converterItem" required="true"
         var="it" filter="true" filterMatchMode="contains" 
         showCheckbox="true" panelStyle="width:180px">
   		 <f:selectItems value="#{perguntaManagedBean.itens}" 
@@ -252,7 +252,7 @@ href="cadastroConteudo.xhtml?i=1" ajax="false">
 	          <p:commandButton value="#{msg['pages.comuns.form.btnSalvar']}" 
 	      action="#{perguntaManagedBean.salvarVerdadeiroFalso}"
 	      	icon="fa fa-save" update=":formVerdadeiroFalso 
-	      	:formTablePergunta:tablePergunta"
+	      	:formTablePergunta:tablePergunta, :formTableDissertativa:tableDissertativa"
 	      	styleClass="ui-priority-primary" validateClient="true"
 	      	/>
 	   </h:form>
@@ -267,11 +267,16 @@ href="cadastroConteudo.xhtml?i=1" ajax="false">
 	   {RowsPerPageDropdown}" rowsPerPageTemplate="5, 10, 15"
 	   emptyMessage="#{msg['pages.cadastroPergunta.filterMSG']}">
 	 
+	     <p:ajax event="rowEdit"     
+           listener="#{perguntaManagedBean.onRowEdit}"     
+           update=":formTablePergunta:tablePergunta, 
+           :formTableDissertativa:tableDissertativa" />
+	 
 	    <p:column headerText="#{msg['pages.cadastroPergunta.table.codigo']}" 
 	    filterBy="#{p.codPer}"> 
         <p:outputLabel value="#{p.codPer}" />
       </p:column>
-      
+  
         <p:column headerText="#{msg['pages.cadastroPergunta.table.enunciado']}"
         filterBy="#{p.enunciado}">
 				<p:cellEditor>
@@ -325,11 +330,6 @@ href="cadastroConteudo.xhtml?i=1" ajax="false">
 					</f:facet>
 				</p:cellEditor>
 			</p:column>
-			
-			<p:column headerText="#{msg['pages.cadastroPergunta.table.numeroPerguntas']}" 
-			filterBy="#{p.numeroPerguntas}">
-        <p:outputLabel value="#{p.numeroPerguntas}" />
-      </p:column>
          
        <p:column style="width:70px" 
        headerText="#{msg['pages.comuns.form.opcoes']}">
@@ -337,10 +337,112 @@ href="cadastroConteudo.xhtml?i=1" ajax="false">
        	<p:commandLink id="remover" styleClass="fa fa-trash"
 						style="text-align:center"
 						actionListener="#{perguntaManagedBean.removePergunta(p)}"
-						update="tablePergunta" />
+						update="tablePergunta, :formTableDissertativa:tableDissertativa" />
        </p:column>
 	   </p:dataTable>
 	     </h:form>
+	     
+	     
+	     <br/>
+	   <h3><h:outputLabel value="#{msg['pages.cadastroPergunta.dissertativa.table.title']}" /></h3>
+	  <br/>
+	   <h:form id="formTableDissertativa">
+	   <p:dataTable value="#{perguntaManagedBean.dissertativas}" var="d"
+	   id="tableDissertativa" editable="true" rows = "10" 
+	   paginator="true" paginatorTemplate="{CurrentPageReport}
+	   {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink}
+	   {RowsPerPageDropdown}" rowsPerPageTemplate="5, 10, 15"
+	   emptyMessage="#{msg['pages.cadastroPergunta.dissertativa.filterMSG']}">
+	 
+	     <p:ajax event="rowEdit"     
+           listener="#{perguntaManagedBean.onRowEdit}"     
+           update=":formTablePergunta:tablePergunta, 
+           :formTableDissertativa:tableDissertativa" />
+	 
+	    <p:column headerText="#{msg['pages.cadastroPergunta.dissertativa.table.codigo']}" 
+	    filterBy="#{d.codPer}"> 
+        <p:outputLabel value="#{d.codPer}" />
+      </p:column>
+      
+        <p:column headerText="#{msg['pages.cadastroPergunta.dissertativa.table.enunciado']}"
+        filterBy="#{d.enunciado}">
+				<p:cellEditor>
+					<f:facet name="output">
+					<p:outputLabel value="#{d.enunciado}"/>
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="enunciado" value="#{d.enunciado}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			
+			 <p:column headerText="#{msg['pages.cadastroPergunta.dissertativa.table.resposta']}"
+        filterBy="#{d.resposta}">
+				<p:cellEditor>
+					<f:facet name="output">
+					<p:outputLabel value="#{d.resposta}"/>
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="resposta" value="#{d.resposta}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			
+			
+			<p:column headerText="#{msg['pages.cadastroPergunta.dissertativa.table.dificuldade']}"
+			filterBy="#{d.dificuldade}">
+				<p:cellEditor>
+					<f:facet name="output">
+					<p:outputLabel value="#{d.dificuldade}"/>
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="dificuldade" value="#{d.dificuldade}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+         
+         <p:column headerText="#{msg['pages.cadastroPergunta.dissertativa.table.tempoEstimado']}"
+         filterBy="#{d.tempoEstimado}">
+				<p:cellEditor>
+					<f:facet name="output">
+					<p:outputLabel value="#{d.tempoEstimado}"/>
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="tempoEstimado" value="#{d.tempoEstimado}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			
+			 <p:column headerText="#{msg['pages.cadastroPergunta.dissertativa.table.dataCriacao']}"
+			 filterBy="#{d.dataCriacao}">
+				<p:cellEditor>
+					<f:facet name="output">
+					<p:outputLabel value="#{d.dataCriacao}">
+					<f:convertDateTime pattern="MM/dd/yyyy" />
+					</p:outputLabel>
+					</f:facet>
+					<f:facet name="input">
+						<p:calendar id="dataCriacao" 
+         					value="#{d.dataCriacao}" style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			
+       <p:column style="width:70px" 
+       headerText="#{msg['pages.comuns.form.opcoes']}">
+        <p:rowEditor/>
+               	<p:commandLink id="remover" styleClass="fa fa-trash"
+						style="text-align:center"
+						actionListener="#{perguntaManagedBean.removePergunta(d)}"
+						update=":formTablePergunta:tablePergunta, :formTableDissertativa:tableDissertativa" />
+       </p:column>
+	   </p:dataTable>
+	     </h:form>
+	     
 	   
 	</ui:define>
 </ui:composition>

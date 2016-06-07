@@ -5,15 +5,14 @@ import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.RowEditEvent;
-import org.primefaces.model.UploadedFile;
 import sistema.modelos.Alternativa;
 import sistema.modelos.Dissertativa;
 import sistema.modelos.Item;
 import sistema.modelos.MultiplaEscolha;
 import sistema.modelos.Pergunta;
 import sistema.modelos.VerdadeiroFalso;
+import sistema.service.DissertativaService;
 import sistema.service.ItemService;
 import sistema.service.PerguntaService;
 
@@ -31,21 +30,15 @@ public class PerguntaManagedBean implements Serializable
 	private List<Pergunta> perguntas;
 	private PerguntaService perguntaService = new PerguntaService();
 	private ItemService itemService = new ItemService();
+	private DissertativaService dissertativaService = new DissertativaService();
 	private List<Item> itensSelecionados;
 	private List<Item> itens;
-	//private UploadedFile file;
-	//private String nomeFile;
+	private List<Dissertativa> dissertativas;
    
 	public void salvarAlternativa() 
-	{	
-		int nPergunta = 0;
-		
-		nPergunta = perguntas.size();
-		nPergunta += 1;
-		alternativa.setNumeroPerguntas(nPergunta);
+	{		
 		adicionaItensA();
 		
-		//pegaUrlA();
 		
 		perguntaService.salvarAlternativa(alternativa);
 	
@@ -58,34 +51,23 @@ public class PerguntaManagedBean implements Serializable
 	}
 	public void salvarDissertativa() 
 	{
-		int nPergunta;
-		
-		nPergunta = perguntas.size();
-		nPergunta += 1;
-		
-		dissertativa.setNumeroPerguntas(nPergunta);
-		//pegaUrlD();
 		perguntaService.salvarDissertativa(dissertativa);
 		
 		if(perguntas != null)
 		{
 			perguntas.add(dissertativa);
 		}
+		if(dissertativas != null)
+		{
+			dissertativas.add(dissertativa);
+		}
 		
 		dissertativa = new Dissertativa();
 
 	}
 	public void salvarMultiplaEscolha() 
-	{
-		int nPergunta;
-	
-		nPergunta = perguntas.size();
-		nPergunta += 1;
-		
-		multiplaEscolha.setNumeroPerguntas(nPergunta);
-		
+	{		
 		adicionaItensM();
-		//pegaUrlM();
 		perguntaService.salvarMultiplaEscolha(multiplaEscolha);
 		
 		if(perguntas != null)
@@ -97,13 +79,7 @@ public class PerguntaManagedBean implements Serializable
 	}
 	public void salvarVerdadeiroFalso() 
 	{
-		int nPergunta;
-		
-		nPergunta = perguntas.size();
-		nPergunta += 1;
-		
-		verdadeiroFalso.setNumeroPerguntas(nPergunta);
-		//pegaUrlV();
+
 		adicionaItensV();
 		
 		perguntaService.salvarVerdadeiroFalso(verdadeiroFalso);
@@ -136,42 +112,6 @@ public class PerguntaManagedBean implements Serializable
 			verdadeiroFalso.addItens(itensSelecionados.get(i));
 		}
 	}
-	/*public void pegaUrlA()
-	{
-		alternativa.setImagem(nomeFile);
-	}
-	public void pegaUrlD()
-	{
-		dissertativa.setImagem(nomeFile);
-	}
-	public void pegaUrlM()
-	{
-		multiplaEscolha.setImagem(nomeFile);
-	}
-	public void pegaUrlV()
-	{
-		verdadeiroFalso.setImagem(nomeFile);
-	}
-	public void upload()
-	{
-		if(file != null)
-		{
-			nomeFile = file.getFileName();
-		}
-	}
-	
-	public String getNomeFile() {
-		return nomeFile;
-	}
-	public void setNomeFile(String nomeFile) {
-		this.nomeFile = nomeFile;
-	}
-	public UploadedFile getFile() {
-		return file;
-	}
-	public void setFile(UploadedFile file) {
-		this.file = file;
-	}*/
 	public List<Item> getItens() {
 		if(itens == null)
 		{
@@ -179,6 +119,17 @@ public class PerguntaManagedBean implements Serializable
 		}
 		
 		return itens;
+	}
+	public List<Dissertativa> getDissertativas() 
+	{
+		if(dissertativas == null)
+		{	
+			dissertativas = dissertativaService.getDissertativas();
+		}
+		return dissertativas;	
+	}
+	public void setDissertativas(List<Dissertativa> dissertativas) {
+		this.dissertativas = dissertativas;
 	}
 	public void setItens(List<Item> itens) {
 		this.itens = itens;

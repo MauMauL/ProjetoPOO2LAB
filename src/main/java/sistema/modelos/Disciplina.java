@@ -33,7 +33,7 @@ public class Disciplina implements Serializable
 	public long getCodigoDisc() {
 		return codigoDisc;
 	}
-	public void setCodigoDisc(int codigoDisc) {
+	public void setCodigoDisc(long codigoDisc) {
 		this.codigoDisc = codigoDisc;
 	}
 	public String getNomeDisc() {

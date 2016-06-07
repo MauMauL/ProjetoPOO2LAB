@@ -1,11 +1,8 @@
 package sistema.beans;
 
 import java.util.List;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
-import org.primefaces.event.ReorderEvent;
 import org.primefaces.event.RowEditEvent;
 import sistema.modelos.Conteudo;
 import sistema.modelos.Disciplina;
@@ -106,6 +103,12 @@ public class ConteudoManagedBean
 
 		return conteudos;
 	}
+	
+	public void setConteudos(List<Conteudo> conteudos) {
+		this.conteudos = conteudos;
+	}
+
+
 	public void adicionaPerguntas()
 	{
 		for(int i = 0; i < perguntasSelecionadas.size(); i++)
@@ -118,10 +121,4 @@ public class ConteudoManagedBean
 		Conteudo c = ((Conteudo) event.getObject());
 		contService.alterar(c);
 	}
-
-	public void onRowReorder(ReorderEvent event) {
-        FacesMessage msg = new FacesMessage();
-        FacesContext.getCurrentInstance().addMessage("Ordem da Lista"
-        		+ "de Conteudos Mudada", msg);
-    }
 }

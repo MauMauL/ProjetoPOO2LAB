@@ -31,7 +31,7 @@ public class Conteudo implements Serializable
 	public long getCodigoCont() {
 		return codigoCont;
 	}
-	public void setCodigoCont(int codigoCont) {
+	public void setCodigoCont(long codigoCont) {
 		this.codigoCont = codigoCont;
 	}
 	public String getNomeCont() {

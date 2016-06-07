@@ -83,7 +83,7 @@ public class GeradorPDF
            document.add(new Paragraph("Curso: " + prova.getCurso()));
            document.add(new Paragraph("Turma: " + prova.getTurma()));
            document.add(new Paragraph("Data de Aplicação: " + prova.getDataAplicacao().getDate()
-        		   +"/"+prova.getDataAplicacao().getMonth()+"/"+"16"));
+        		   +"/"+(prova.getDataAplicacao().getMonth()+1)+"/"+(prova.getDataAplicacao().getYear()-100)));
            document.add(new Paragraph("Tempo Estimado: " + prova.getTempo()+" minutos"));
            document.add(new Paragraph("Dificuldade da prova: " + prova.getDificuldade()));
            document.add(new Paragraph("Disciplina: " + prova.getDisciplina().getNomeDisc()));

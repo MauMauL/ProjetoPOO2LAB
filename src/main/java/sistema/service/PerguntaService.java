@@ -54,12 +54,10 @@ public class PerguntaService
 		perguntaDAO.closeEntityManager();
 		return list;
 	}
-
 	public void alterar(Pergunta pergunta) {
 		perguntaDAO.save(pergunta);
 		perguntaDAO.closeEntityManager();
 	}
-
 	public void remover(Pergunta pergunta) {
 
 		pergunta = perguntaDAO.getById(Pergunta.class,
