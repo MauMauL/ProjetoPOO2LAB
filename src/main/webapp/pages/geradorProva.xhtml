@@ -29,7 +29,7 @@ href="cadastroProva.xhtml?i=1" ajax="false">
         <p:selectOneMenu value="#{geradorPDF.prova}" 
         converter="converterProva" panelStyle="width:180px"
       effect="fade" var="sm" style="width:191px" filter="true"
-       filterMatchMode="startsWith"  validateClient="true" >
+       filterMatchMode="contains"  validateClient="true" >
       
        <f:selectItem itemValue="" itemLabel="#{msg['pages.geradorProva.form.sm.prova']}" />
        

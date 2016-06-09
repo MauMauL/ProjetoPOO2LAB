@@ -36,7 +36,7 @@ href="cadastroProva.xhtml?i=1" ajax="false">
         <p:selectOneMenu id="sm" value="#{conteudoManagedBean.disciplina}" 
         converter="converterDisciplina" panelStyle="width:180px"
       effect="fade" var="sm" style="width:191px" filter="true"
-       filterMatchMode="startsWith" required="true" >
+       filterMatchMode="contains" required="true" >
        
        <f:selectItem itemValue="" 
        itemLabel="#{msg['pages.cadastroConteudo.form.sm.disciplina']}" />
